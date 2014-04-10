@@ -4,27 +4,17 @@
 
 	<parent>
 		<groupId>com.kildeen.ref</groupId>
-		<artifactId>ref-parent</artifactId>
+		<artifactId>ref-core-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.kildeen.ref</groupId>
-	<artifactId>ref-web-parent</artifactId>
+	<artifactId>ref-core-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-	<name>ref-web-parent</name>
-
-	<description>
-        The parent project for Admin module
-	</description>
-
-	<modules>
-		<module>api</module>
-		<module>impl</module>
-        <module>all</module>
-
-    </modules>
+    <dependencies>
+    </dependencies>
 
 </project>
