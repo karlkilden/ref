@@ -14,7 +14,7 @@
     <!--</interceptors>-->
 
     <decorators>
-        <class>com.kildeen.embryo.core.cache.CacheLockManager</class>
+
     </decorators>
 
 </beans>
