@@ -17,8 +17,4 @@
 
     </decorators>
 
-    <alternatives>
-        <class>org.apache.deltaspike.jpa.impl.transaction.EnvironmentAwareTransactionStrategy</class>
-    </alternatives>
-
 </beans>
