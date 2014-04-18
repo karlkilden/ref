@@ -14,7 +14,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.kildeen.ref.application;
+package com.kildeen.ref.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

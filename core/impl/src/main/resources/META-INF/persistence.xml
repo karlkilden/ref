@@ -24,6 +24,7 @@
         <properties>
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
             <property name="openejb.jpa.auto-scan.package" value="com.kildeen.ref.domain" />
+            <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
         </properties>
     </persistence-unit>
 </persistence>

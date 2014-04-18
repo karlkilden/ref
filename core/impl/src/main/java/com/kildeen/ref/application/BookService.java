@@ -17,6 +17,8 @@
 package com.kildeen.ref.application;
 
 
+import com.kildeen.ref.domain.Book;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

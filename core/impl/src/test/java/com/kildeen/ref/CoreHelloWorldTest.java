@@ -1,6 +1,6 @@
 package com.kildeen.ref;
 
-import com.kildeen.ref.application.Book;
+import com.kildeen.ref.domain.Book;
 import com.kildeen.ref.application.BookService;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.*;

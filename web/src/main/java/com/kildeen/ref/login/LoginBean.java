@@ -8,7 +8,8 @@ package com.kildeen.ref.login;
  * @since 1.0
  */
 
-import com.kildeen.ref.CoreTest;
+
+import com.kildeen.ref.CoreHelloWorld;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
 public class LoginBean {
 
     @Inject
-    private CoreTest coreTest;
+    private CoreHelloWorld coreTest;
     private String hello;
 
     @PostConstruct
