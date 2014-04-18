@@ -1,6 +1,6 @@
 package com.kildeen.ref;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 
 /**
  * <p>File created: 2014-04-12 10:05</p>
@@ -9,10 +9,10 @@ import javax.enterprise.context.ApplicationScoped;
  * @author: Karl Kildén
  * @since 1.0
  */
-@ApplicationScoped
+@Stateless
 public class CoreHelloWorldImpl implements CoreHelloWorld {
     @Override
     public String getHelloWorld() {
-        return "Hello, World!";
+        return "hello";
     }
 }
