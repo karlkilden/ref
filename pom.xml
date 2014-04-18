@@ -15,8 +15,6 @@
     <modules>
         <module>core</module>
         <module>web</module>
-        <module>modules</module>
-
     </modules>
 
     <properties>
@@ -101,6 +99,18 @@
             <artifactId>javaee-api</artifactId>
             <version>6.0-5</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-api</artifactId>
+            <version>0.7-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-impl</artifactId>
+            <version>0.7-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
