@@ -14,16 +14,12 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package application;
+package com.kildeen.ref;
 
 import com.kildeen.ref.com.kildeen.ref.domain.Public;
-import org.apache.deltaspike.core.api.config.view.navigation.event.PreViewConfigNavigateEvent;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 @Stateless

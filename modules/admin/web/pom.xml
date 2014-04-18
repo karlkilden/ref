@@ -18,6 +18,7 @@
             <groupId>com.kildeen.ref</groupId>
             <artifactId>ref-admin-core</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

@@ -184,13 +184,11 @@
                     </systemVariables>
                     <reloadOnUpdate>true</reloadOnUpdate>
                     <synchronization>
-                        <updateInterval>3</updateInterval>
-                        <updateOnlyExtensions>
-                            <updateOnlyExtension>.xhtml</updateOnlyExtension>
-                            <updateOnlyExtension>.css</updateOnlyExtension>
-                            <updateOnlyExtension>.js</updateOnlyExtension>
-                            <updateOnlyExtension>.class</updateOnlyExtension>
-                        </updateOnlyExtensions>
+                        <updateInterval>1</updateInterval>
+                        <extensions>
+                            <extension>.class</extension>
+                            <extension>.xhtml</extension>
+                        </extensions>
                     </synchronization>
 
                     <args>-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,suspend=n,server=y</args>

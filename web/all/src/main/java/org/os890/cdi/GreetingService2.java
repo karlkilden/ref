@@ -18,46 +18,19 @@
 */
 package org.os890.cdi;
 
-import org.apache.deltaspike.core.api.scope.WindowScoped;
-
-import javax.inject.Inject;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import java.io.Serializable;
 
 /*
  * generated
  */
-@Named("helloWorld")
-@WindowScoped
-public class HelloWorldController implements Serializable
+@Named
+@ApplicationScoped
+public class GreetingService2
 {
-    @Inject
-    private GreetingService2 greetingService;
-
-    private String name;
-                          ;
-    public String send()
+    public String createGreeting(String name)
     {
-        return "apa.xhtml";
+        return "Hello " + name + ". We hope you enjoy Apache DeltaSpike!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
     }
 
-    public String getGreeting()
-    {
-        return greetingService.createGreeting(name);
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-
-    public String getHello() {
-        return "hi";
-    }
 }

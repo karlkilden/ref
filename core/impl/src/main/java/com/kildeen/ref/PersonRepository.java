@@ -1,4 +1,4 @@
-package application;
+package com.kildeen.ref;
 
 import com.kildeen.ref.com.kildeen.ref.domain.Public;
 import org.apache.deltaspike.data.api.EntityRepository;

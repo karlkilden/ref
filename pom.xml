@@ -20,9 +20,10 @@
     </modules>
 
     <properties>
-        <ds.version>0.6</ds.version>
+        <ds.version>0.7-SNAPSHOT</ds.version>
         <public.module>0.6</public.module>
         <public.module>0.6</public.module>
+
 
 
     </properties>

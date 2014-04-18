@@ -18,7 +18,7 @@ package presentation;
 
 
 
-import application.BookService;
+import com.kildeen.ref.BookService;
 import com.kildeen.ref.com.kildeen.ref.domain.Public;
 import com.kildeen.ref.pages.Result;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;

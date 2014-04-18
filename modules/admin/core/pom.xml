@@ -20,9 +20,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.deltaspike.modules</groupId>
-            <artifactId>deltaspike-jsf-module-api</artifactId>
-            <version>${ds.version}</version>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>openejb-core</artifactId>
+            <version>4.6.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

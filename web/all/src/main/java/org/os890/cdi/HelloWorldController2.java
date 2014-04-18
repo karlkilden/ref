@@ -27,18 +27,18 @@ import java.io.Serializable;
 /*
  * generated
  */
-@Named("helloWorld")
+@Named("helloWorld2")
 @WindowScoped
-public class HelloWorldController implements Serializable
+public class HelloWorldController2 implements Serializable
 {
     @Inject
-    private GreetingService2 greetingService;
+    private GreetingService greetingService;
 
     private String name;
                           ;
     public String send()
     {
-        return "apa.xhtml";
+        return "result.xhtml!!!!!!"+toString();
     }
 
     public String getGreeting()
