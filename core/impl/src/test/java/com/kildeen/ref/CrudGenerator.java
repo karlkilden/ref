@@ -1,6 +1,7 @@
 package com.kildeen.ref;
 
 import com.kildeen.ref.application.fact.FactRepository;
+import com.sun.xml.internal.ws.util.StringUtils;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -38,10 +39,11 @@ public class CrudGenerator {
                             cut = cut.replace("\"","");
                             cut = cut.replace("(", "");
                             cut = cut.replace(")","");
-                            cut = cut.replace("","");
+                            cut = cut.replace("  "," ");
                             cut = cut.trim();
 
-                            System.out.println("public " + s.getName()+String.format("(%s)", cut));
+                            System.out.println("public " + s.getName()+String.format("(%s) {", cut));
+                            System.out.println(StringUtils.decapitalize(clazz.getSimpleName()));
                             break;
                         }
                     }
