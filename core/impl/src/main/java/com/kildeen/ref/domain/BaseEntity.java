@@ -1,13 +1,10 @@
 package com.kildeen.ref.domain;
 
-import com.google.common.base.Strings;
+import org.apache.deltaspike.data.api.audit.ModifiedBy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +13,8 @@ import java.util.List;
  */
 @MappedSuperclass
 public class BaseEntity implements Serializable {
+
+    @ModifiedBy
     @Column(name = "ref_created_by")
     private String createdBy;
 
@@ -25,23 +24,21 @@ public class BaseEntity implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ref_latest_change_at")
-    private Date latestChangeAt;
+    private Date updatedAt;
 
     @Id
     @GeneratedValue
+    @Column(name = "ref_id")
     private long id;
 
-    @Column(name = "ref_readable_id")
-    private String readableId;
-
-    @Column(name = "ref_previous_readable_ids")
-    private String previousReadableId;
-    private transient List<String> previousReadableIds;
-
-    public transient String readableIdAtRead;
+    @Column(name = "ref_revision")
+    private int revision;
 
     @Version
     private long version;
+
+    @Column(name = "ref_readable_id")
+    private String readableId;
 
     private transient Date loadTime;
 
@@ -53,36 +50,29 @@ public class BaseEntity implements Serializable {
         return createdAt;
     }
 
-    public Date getLatestChangeAt() {
-        return latestChangeAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    protected Long getVersion() {
+    protected long getVersion() {
         return version;
     }
 
-    public Object getObjectId() {
-        return id;
-    }
 
     @PreUpdate
     protected void onUpdate() {
-        latestChangeAt = new Date();
-        addPreviousId();
+        updatedAt = new Date();
+        revision++;
     }
 
     @PrePersist
     protected void onCreate() {
+        revision++;
         createdAt = new Date();
-        addPreviousId();
     }
 
     public String getReadableId() {
@@ -99,19 +89,7 @@ public class BaseEntity implements Serializable {
 
     @PostLoad
     protected void onLoad() {
-        readableIdAtRead = readableId;
-        if (Strings.isNullOrEmpty(previousReadableId)) {
-            // nothing to parse
-        } else {
-            String[] previous = previousReadableId.split(",");
-            previousReadableIds = new ArrayList<>(Arrays.asList(previous));
-        }
-
         loadTime = new Date();
-    }
-
-    private void addPreviousId() {
-
     }
 
 }

@@ -19,6 +19,7 @@
 
     <properties>
         <ds.version>0.7-SNAPSHOT</ds.version>
+        <openjpa.version>2.4.0-SNAPSHOT</openjpa.version>
         <public.module>0.6</public.module>
         <public.module>0.6</public.module>
 

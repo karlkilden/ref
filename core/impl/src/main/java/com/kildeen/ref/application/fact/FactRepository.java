@@ -14,4 +14,5 @@ import org.apache.deltaspike.data.api.Repository;
  */
 @Repository
 public interface FactRepository extends EntityRepository<Fact, Long> {
+
 }

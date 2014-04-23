@@ -25,8 +25,11 @@ public class FactServiceTest {
 
     @Test
     public void testSave() throws Exception {
-          factService.save(new Fact());
-        assertNotNull(factService.getAll());
+        Fact fact = new Fact();
+        fact.setName("Highlander");
+          factService.save(fact);
+        assertNotNull(factService.fetchByName("Highlander"));
+
     }
 
     public void testRemove() throws Exception {

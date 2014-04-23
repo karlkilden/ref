@@ -7,7 +7,9 @@ import javax.cache.annotation.CacheDefaults;
 import javax.cache.annotation.CacheRemove;
 import javax.cache.annotation.CacheResult;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ import java.util.List;
  */
 @Stateless
 @CacheDefaults(cacheName = FactCache.FACT_CACHE)
+
 public class FactService {
 
     @Inject
@@ -26,6 +29,9 @@ public class FactService {
 
     @Inject
     private Cache<Long, Fact> cache;
+
+    @PersistenceContext(unitName = "book-pu")
+    private EntityManager entityManager;
 
     public void save(Fact fact) {
         factRepository.saveAndFlush(fact);
@@ -48,6 +54,12 @@ public class FactService {
 
     public Fact getById(long id) {
         return cache.get(id);
+    }
+
+    public Fact fetchByName(String name) {
+        TypedQuery<Fact> byName = entityManager.createNamedQuery("byName", Fact.class);
+        byName.setParameter("name", name);
+        return byName.getSingleResult();
     }
 
 }

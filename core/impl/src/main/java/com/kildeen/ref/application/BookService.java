@@ -18,16 +18,13 @@ package com.kildeen.ref.application;
 
 
 import com.kildeen.ref.domain.Book;
-import com.kildeen.ref.domain.User;
 
-import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.annotation.CacheKey;
 import javax.cache.annotation.CacheResult;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -45,7 +42,7 @@ public class BookService {
     }
 
 
-            @CacheResult()
+    @CacheResult()
     public List<Book> getAllBooks(@CacheKey String key, String ignore) {
 
         CacheManager cacheManager = Caching.getCachingProvider().getCacheManager();
