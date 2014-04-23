@@ -11,10 +11,11 @@ import java.io.Serializable;
  * @since 1.0
  */
 @Entity
-@NamedQuery(name="byName",
+@NamedQuery(name=Fact.BY_NAME,
         query="SELECT fact FROM Fact fact WHERE fact.name = :name")
 public class Fact extends BaseEntity {
 
+    public static final String BY_NAME = "byName";
     @Column(name = "ref_name")
     private String name;
 

@@ -3,6 +3,8 @@ package com.kildeen.ref.application.fact;
 import com.kildeen.ref.domain.Fact;
 import com.kildeen.ref.testutil.CDIRunner;
 import junit.framework.TestCase;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.deltaspike.data.api.QueryResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,6 +31,24 @@ public class FactServiceTest {
         fact.setName("Highlander");
           factService.save(fact);
         assertNotNull(factService.fetchByName("Highlander"));
+        assertNotNull(factService.findByNameEquals("Highlander"));
+
+    }
+
+    @Test
+    public void bulkTest() {
+        for (int i =0; i< 100; i++) {
+            Fact fact = new Fact();
+            fact.setName(RandomStringUtils.random(5));
+            factService.save(fact);
+        }
+        QueryResult<Fact> result = factService.fetchAllResult().withPageSize(100);
+        int totalPages = result.countPages();
+        System.out.print("PAGES   "+totalPages);
+        result.count();
+        result.getResultList();
+        result.nextPage().getResultList();
+        result.nextPage().getResultList();
 
     }
 

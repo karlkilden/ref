@@ -1,6 +1,7 @@
 package com.kildeen.ref.application.fact;
 
 import com.kildeen.ref.domain.Fact;
+import org.apache.deltaspike.data.api.QueryResult;
 
 import javax.cache.Cache;
 import javax.cache.annotation.CacheDefaults;
@@ -57,9 +58,16 @@ public class FactService {
     }
 
     public Fact fetchByName(String name) {
-        TypedQuery<Fact> byName = entityManager.createNamedQuery("byName", Fact.class);
-        byName.setParameter("name", name);
-        return byName.getSingleResult();
+        return factRepository.fetchByName(name);
     }
+
+    public QueryResult<Fact> fetchAllResult() {
+       return factRepository.fetchAll();
+    }
+
+    public Fact findByNameEquals(String equals) {
+        return factRepository.fetchByName(equals);
+    }
+
 
 }
