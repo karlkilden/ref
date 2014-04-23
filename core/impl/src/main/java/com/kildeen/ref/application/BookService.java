@@ -18,8 +18,16 @@ package com.kildeen.ref.application;
 
 
 import com.kildeen.ref.domain.Book;
+import com.kildeen.ref.domain.User;
 
+import javax.cache.Cache;
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+import javax.cache.annotation.CacheKey;
+import javax.cache.annotation.CacheResult;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,18 +37,23 @@ import java.util.List;
 public class BookService {
 
     @PersistenceContext(unitName = "book-pu")
+    @Produces
     private EntityManager entityManager;
 
-    public void addBook(Book book)
-    {
-      entityManager.persist(book);
+    public void addBook(Book book) {
+        entityManager.persist(book);
     }
 
-    public List<Book> getAllBooks()
-    {
+
+            @CacheResult()
+    public List<Book> getAllBooks(@CacheKey String key, String ignore) {
+
+        CacheManager cacheManager = Caching.getCachingProvider().getCacheManager();
+
         CriteriaQuery<Book> cq = entityManager.getCriteriaBuilder().createQuery(Book.class);
         cq.select(cq.from(Book.class));
         return entityManager.createQuery(cq).getResultList();
     }
+
     private String hi;
 }
