@@ -17,4 +17,15 @@
 
     </decorators>
 
+    <alternatives>
+        <class>org.apache.deltaspike.jpa.impl.transaction.EnvironmentAwareTransactionStrategy</class>
+    </alternatives>
+
+    <interceptors>
+        <class>org.infinispan.jcache.annotation.CacheResultInterceptor</class>
+        <class>org.infinispan.jcache.annotation.CachePutInterceptor</class>
+        <class>org.infinispan.jcache.annotation.CacheRemoveEntryInterceptor</class>
+        <class>org.infinispan.jcache.annotation.CacheRemoveAllInterceptor</class>
+    </interceptors>
+
 </beans>
