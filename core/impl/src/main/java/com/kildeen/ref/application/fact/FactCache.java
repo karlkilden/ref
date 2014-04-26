@@ -25,12 +25,12 @@ public class FactCache {
 
     public static final String FACT_CACHE = "factCache";
     @Produces
-    private Cache<Long, Fact> cache;
+    private Cache<Long, FactDTO> cache;
 
     @PostConstruct
     private void setup() {
         CacheManager cacheManager = Caching.getCachingProvider().getCacheManager();
-        MutableConfiguration conf = new MutableConfiguration<Long, Fact>();
+        MutableConfiguration conf = new MutableConfiguration<Long, FactDTO>();
         conf.setExpiryPolicyFactory(AccessedExpiryPolicy.factoryOf(Duration.ONE_HOUR))
                 .setStatisticsEnabled(true);
         cache = cacheManager.createCache(FACT_CACHE, conf);

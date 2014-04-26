@@ -41,13 +41,9 @@ public class EJBRunner extends EJBContainerRunner {
             projectStage = ProjectStage.valueOf(testControl.projectStage().getSimpleName());
             ProjectStageProducer.setProjectStage(projectStage);
         }
-        super.runChild(method, notifier);
-        try
-        {
+        try {
             super.runChild(method, notifier);
-        }
-        finally
-        {
+        } finally {
             ProjectStageProducer.setProjectStage(previousProjectStage);
         }
     }

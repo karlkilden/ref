@@ -30,12 +30,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-@Stateless
 public class BookService {
 
-    @PersistenceContext(unitName = "book-pu")
-    @Produces
-    private EntityManager entityManager;
+/*
 
     public void addBook(Book book) {
         entityManager.persist(book);
@@ -52,5 +49,5 @@ public class BookService {
         return entityManager.createQuery(cq).getResultList();
     }
 
-    private String hi;
+    private String hi;*/
 }

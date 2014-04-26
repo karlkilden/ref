@@ -29,44 +29,49 @@ public class FactService {
     private FactRepository factRepository;
 
     @Inject
-    private Cache<Long, Fact> cache;
+    private Cache<Long, FactDTO> cache;
 
-    @PersistenceContext(unitName = "book-pu")
+    @PersistenceContext(unitName = "ref")
     private EntityManager entityManager;
 
-    public void save(Fact fact) {
-        factRepository.saveAndFlush(fact);
+    public void save(FactDTO fact) {
+    factRepository.saveAndFlush(fact);
+
     }
 
     @CacheRemove
-    public void remove(Fact fact) {
+    public void remove(FactDTO fact) {
         factRepository.remove(fact);
     }
 
     @CacheResult
-    public List<Fact> getAll() {
+    public List<FactDTO> getAll() {
         return factRepository.findAll();
     }
 
     @CacheResult
-    public Fact fetchById(long id) {
+    public FactDTO fetchById(long id) {
         return factRepository.findBy(id);
     }
 
-    public Fact getById(long id) {
+    public FactDTO getById(long id) {
         return cache.get(id);
     }
 
-    public Fact fetchByName(String name) {
+    public FactDTO fetchByName(String name) {
         return factRepository.fetchByName(name);
     }
 
-    public QueryResult<Fact> fetchAllResult() {
+    public QueryResult<FactDTO> fetchAllResult() {
        return factRepository.fetchAll();
     }
 
-    public Fact findByNameEquals(String equals) {
+    public FactDTO findByNameEquals(String equals) {
         return factRepository.fetchByName(equals);
+    }
+
+    public List<FactDTO> fetchAll() {
+        return factRepository.findAll();
     }
 
 
