@@ -17,25 +17,15 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template/template.xhtml">
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd" version="2.0">
+    <persistence-unit-metadata>
+        <persistence-unit-defaults>
+            <entity-listeners>
+                <entity-listener class="org.apache.deltaspike.data.impl.audit.AuditEntityListener" />
+            </entity-listeners>
+        </persistence-unit-defaults>
+    </persistence-unit-metadata>
 
-    <ui:define name="content">
-
-
-        <h2>List Groups</h2>
-
-        <h:form>
-
-            <p:dataList value="#{groupBean.groups}" var="group"/>
-
-            #{group.name}
-
-        </h:form>
-
-
-    </ui:define>
-</ui:composition>
+</entity-mappings>

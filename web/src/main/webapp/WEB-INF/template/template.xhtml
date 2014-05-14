@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-        >
+      xmlns:ds="http://deltaspike.apache.org/jsf">
 
 <h:head>
     <h:outputStylesheet name="reset.css" library="css" />
@@ -14,6 +14,7 @@
 
 <h:body>
     <h:body>
+        <ds:windowId/>
         <p style="visibility: hidden" id="media-setter" class="set-media"/>
         <p:growl id="main-growl" widgetVar="growl" showDetail="true" sticky="true" autoUpdate="true"/>
         <o:cache scope="session" time="1">

@@ -41,12 +41,6 @@
             <version>${ds.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.openjpa</groupId>
-            <artifactId>openjpa</artifactId>
-            <version>${openjpa.version}</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
 

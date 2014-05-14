@@ -25,29 +25,45 @@
 
     <ui:define name="content">
 
+        <p:accordionPanel>
+            <p:tab title="Create Group">
+                <h:form>
+                    <div class="part-container">
 
-        <h2>Create Group</h2>
+                        <div style="float: right"><span class="label">Add permissions:</span>
+                            <p:tree value="#{groupBean.root}" var="node" id="tree" selectionMode="checkbox"
+                                    style="width: 500px;"
+                                    propagateSelectionUp="false" selection="#{groupBean.selectedPermissions}">
+                                <p:treeNode id="treeNode">
+                                    <h:outputText value="#{node.name}" id="lblNode"/>
+                                </p:treeNode>
+                            </p:tree>
+                        </div>
 
-        <h:form>
-            <div class="part-container">
+                        <div><p class="label">Name</p> <p:inputText value="#{groupBean.groupDTO.name}"/></div>
 
-                <div style="float: right"><span class="label">Add permissions:</span>
-                    <p:tree  value="#{groupBean.root}" var="node" id="tree" selectionMode="checkbox"
-                            style="width: 500px;"
-                            propagateSelectionUp="false" selection="#{groupBean.selectedPermissions}">
-                        <p:treeNode id="treeNode">
-                            <h:outputText value="#{node.name}" id="lblNode"/>
-                        </p:treeNode>
-                    </p:tree>
-                </div>
+                    </div>
+                    <p:commandButton value="Create Group" action="#{groupBean.createGroup}"/>
 
-                <div><p class="label">Name</p> <p:inputText value="#{groupBean.groupDTO.name}"/></div>
+                    <p:messages/>
+                </h:form>
+            </p:tab>
 
-            </div>
-            <p:commandButton value="Create Group" action="#{groupBean.createGroup}"/>
+            <p:tab title="Edit Group">
+                <h:form>
 
-            <p:messages/>
-        </h:form>
+                    <p:dataTable value="#{groupBean.groups}" var="group" >
+                        <p:column id="group-name" filterBy="name" headerText="Name" filterMatchMode="contains">
+                            <h:outputText value="#{group.name}" />
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:commandButton value="Create Group" action="#{groupBean.createGroup}"/>
+
+                    <p:messages/>
+                </h:form>
+            </p:tab>
+        </p:accordionPanel>
 
 
     </ui:define>

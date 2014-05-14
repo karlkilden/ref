@@ -1,8 +1,6 @@
 package com.kildeen.ref.application.module.fact;
 
-import org.apache.bval.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * <p>File created: 2014-04-24 21:58</p>
@@ -13,12 +11,8 @@ import javax.validation.constraints.NotNull;
  */
 public class FactDTO extends BaseAuditDTO {
 
-    @NotEmpty
-    @NotNull
     private String name;
 
-    @NotEmpty
-    @NotNull
     private String content;
 
     public void setName(final String name) {

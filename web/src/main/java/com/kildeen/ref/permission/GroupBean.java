@@ -10,6 +10,7 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +25,7 @@ import java.util.List;
  * @author: Karl Kildén
  * @since 1.0
  */
-@ViewScoped
+@RequestScoped
 @Named
 public class GroupBean implements Serializable {
 
@@ -40,7 +41,7 @@ public class GroupBean implements Serializable {
     private DefaultTreeNode root;
     private TreeNode[] selectedPermissions;
     private GroupDTO groupDTO = new GroupDTO();
-    public List<GroupDTO> groups;
+    private List<GroupDTO> groups;
 
 
     @PostConstruct

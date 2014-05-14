@@ -27,7 +27,7 @@ public class LeafTest {
 
     @Test
     public void viewConfigShouldIgnoreLeaf() {
-        assertNull(viewConfigResolver.getConfigDescriptor(Pages.Admin.CreateUser.Delete.class));
+        assertNull(viewConfigResolver.getConfigDescriptor(Pages.Admin.Group.GroupSetup.Delete.class));
     }
 
 }

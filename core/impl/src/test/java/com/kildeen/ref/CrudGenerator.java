@@ -25,7 +25,7 @@ public class CrudGenerator {
 
     @Test
     public void generate() throws Exception {
-        System.out.println(Pages.Admin.CreateUser.class.getCanonicalName());
+        System.out.println(Pages.Admin.Group.GroupSetup.class.getCanonicalName());
 
         Class<FactRepository> clazz = FactRepository.class;
         for (Method s : clazz.getDeclaredMethods()) {
