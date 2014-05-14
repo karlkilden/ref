@@ -28,4 +28,11 @@ public class Word extends BaseEntity {
     public void setString(final String string) {
         this.string = string;
     }
+
+    public Word (String string) {
+        this.string = string;
+    }
+
+    public Word() {
+    }
 }

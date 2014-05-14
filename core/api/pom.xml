@@ -21,6 +21,17 @@
             <version>4.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.kildeen.ref</groupId>
+            <artifactId>ref-core-domain</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.bval</groupId>
+            <artifactId>bval-jsr303</artifactId>
+            <version>0.5</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

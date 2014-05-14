@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+
+<h:head>
+    <h:outputStylesheet name="reset.css" library="css" />
+    <h:outputStylesheet name="main.css" library="css" />
+
+
+</h:head>
+
+<h:body>
+    <h:body>
+        <p style="visibility: hidden" id="media-setter" class="set-media"/>
+        <p:growl id="main-growl" widgetVar="growl" showDetail="true" sticky="true" autoUpdate="true"/>
+        <o:cache scope="session" time="1">
+            <div id="header">
+                <div id="b-container-siteHeader" class="ui-widget-header b-container-siteHeader">
+                    <div id="base">
+
+                    </div>
+                    <div class="wrapper">
+                        <h:form>
+                            <p:menubar autoDisplay="false" model="#{navigationBean.model}" />
+                        </h:form>
+                    </div>
+                    <header class="wrapper clearfix">
+
+
+                        <h1 class="b-text-siteHeader title"
+                            id="b-text-siteHeader">Ref</h1>
+
+                        <div style="margin-top: 10px">
+                            <p:ajaxStatus id="ajaxStatusPanel">
+                                <f:facet name="start">
+                                    <div id="ajaxLoader">
+                                        <h:outputText value="w" style="color: #680fec; font-size: 100%"/>
+                                        <h:outputText value="a" style="color: #8d30ac; font-size: 100%"/>
+                                        <h:outputText value="i" style="color: #a543d9; font-size: 100%"/>
+                                        <h:outputText value="t" style="color: #c355ec; font-size: 100%"/>
+                                        <h:outputText value="." style="color: #d36bec; font-size: 300%"/>
+                                        <h:outputText value="." style="color: #d36bec; font-size: 300%"/>
+                                        <h:outputText value="." style="color: #d36bec; font-size: 300%"/>
+                                    </div>
+                                </f:facet>
+                            </p:ajaxStatus>
+                        </div>
+                    </header>
+
+                    <ui:insert name="header">
+                    </ui:insert>
+                </div>
+            </div>
+        </o:cache>
+<!--        <p:socket onMessage="newNotification" channel="#{channel}" rendered="#{channel != null}"/>
+        <p:socket onMessage="newNotification" channel="/notifications"/>    -->
+
+        <h:panelGroup id="mainBody">
+            <ui:insert name="resources">
+
+            </ui:insert>
+            <o:cache scope="session">
+            </o:cache>
+            <h:outputStylesheet library="css" name="reset.css"/>
+            <h:outputStylesheet library="css" name="style.css"/>
+
+
+
+            <ui:insert name="first-content">
+            </ui:insert>
+
+            <div class="main-container main wrapper clearfix header-container">
+                <div class="sublink-container" id="sublinks">
+
+                </div>
+
+                <ui:insert name="content">
+
+                </ui:insert>
+            </div>
+
+
+            <!-- 	<div class="floater"></div> -->
+            <div class="ui-widget-header">
+                <footer class="wrapper">
+                    <ui:insert name="footer">
+                        <h3>footer</h3>
+                    </ui:insert>
+                </footer>
+            </div>
+        </h:panelGroup>
+    </h:body>
+
+</h:body>
+</html>

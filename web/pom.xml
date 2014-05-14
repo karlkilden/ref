@@ -18,9 +18,17 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.kildeen.ref</groupId>
             <artifactId>ref-core-api</artifactId>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -28,6 +36,7 @@
             <artifactId>ref-core-impl</artifactId>
             <scope>runtime</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.omnifaces</groupId>
@@ -45,19 +54,13 @@
             <artifactId>deltaspike-jsf-module-api</artifactId>
             <version>${ds.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.deltaspike.modules</groupId>
-            <artifactId>deltaspike-jsf-module-impl</artifactId>
-            <version>${ds.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
 
         <dependency>
             <groupId>org.apache.deltaspike.modules</groupId>
             <artifactId>deltaspike-servlet-module-api</artifactId>
             <version>${ds.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.deltaspike.modules</groupId>
             <artifactId>deltaspike-servlet-module-impl</artifactId>
@@ -72,6 +75,17 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>all-themes</artifactId>
+            <version>1.0.10</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -85,7 +99,7 @@
                 <configuration>
                     <excludes>
                         <!-- 						<exclude>${public.module}/*.*</exclude>
- -->					</excludes>
+ -->                    </excludes>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
@@ -102,12 +116,13 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <!-- 					<packagingExcludes>WEB-INF/classes/${public.module}/*.*</packagingExcludes>
- -->				</configuration>
+ -->
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.openejb.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>1.6.1-SNAPSHOT</version>
                 <configuration>
                     <context>ROOT</context>
                     <systemVariables>
@@ -118,15 +133,28 @@
                         <updateInterval>1</updateInterval>
                         <extensions>
                             <extension>.class</extension>
-                            <extension>.xhtml</extension>
+                            <updateOnlyExtension>.xhtml</updateOnlyExtension>
+                            <updateOnlyExtension>.js</updateOnlyExtension>
+                            <updateOnlyExtension>.css</updateOnlyExtension>
                         </extensions>
+
                     </synchronization>
 
                     <args>-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,suspend=n,server=y</args>
 
                     <webapps>
                     </webapps>
+
+                    <libs>
+                    <lib>postgresql:postgresql:9.1-901.jdbc4</lib>
+                    <lib>remove:myfaces-api-2.1.15</lib>
+                    <lib>remove:myfaces-impl-2.1.15</lib>
+                    <lib>org.apache.myfaces.core:myfaces-api:2.2.3</lib>
+                    <lib>org.apache.myfaces.core:myfaces-impl:2.2.3</lib>
+                    </libs>
+
                 </configuration>
+
             </plugin>
 
             <plugin>

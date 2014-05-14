@@ -1,12 +1,14 @@
 package com.kildeen.ref;
 
-import com.kildeen.ref.application.fact.FactRepository;
+import com.kildeen.ref.application.module.fact.FactRepository;
+import com.kildeen.ref.system.InvalidLeaf;
+import com.kildeen.ref.system.Pages;
+import com.kildeen.ref.system.SystemNodeResolverImpl;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ public class CrudGenerator {
 
     @Test
     public void generate() throws Exception {
+        System.out.println(Pages.Admin.CreateUser.class.getCanonicalName());
 
         Class<FactRepository> clazz = FactRepository.class;
         for (Method s : clazz.getDeclaredMethods()) {

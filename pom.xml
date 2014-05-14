@@ -42,6 +42,7 @@
             </dependency>
 
 
+
             <dependency>
                 <groupId>com.kildeen.ref</groupId>
                 <artifactId>ref-core-domain</artifactId>
@@ -51,25 +52,7 @@
 
             <dependency>
                 <groupId>com.kildeen.ref</groupId>
-                <artifactId>ref-public-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kildeen.ref</groupId>
-                <artifactId>ref-public-web</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kildeen.ref</groupId>
-                <artifactId>ref-admin-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kildeen.ref</groupId>
-                <artifactId>ref-admin-web</artifactId>
+                <artifactId>ref-core-mock</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
