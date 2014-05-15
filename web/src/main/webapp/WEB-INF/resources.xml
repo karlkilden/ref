@@ -1,9 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 <Resource id="ref" type="DataSource">
 
     #PostgresSQL
     JdbcDriver org.postgresql.Driver
-    JdbcUrl jdbc:postgresql://127.0.0.1:5432/ref
+    JdbcUrl jdbc:postgresql://127.0.0.1:5432/test
     UserName postgres
-    Password postgres
+    Password 1111
     JtaManaged true
 </Resource>
+</resources>

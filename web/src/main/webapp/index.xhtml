@@ -17,19 +17,20 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-        >
-<h:head>
-    <title></title>
-</h:head>
-<h:body>
-    <h:outputStylesheet name="style.css" library="css"/>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h2>Create fact</h2>
+    <f:metadata>
+        <f:viewAction action="#{navigationBean.getNavigateDefault()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
 
 
-</h:body>
-</html>
+
+    </ui:define>
+</ui:composition>

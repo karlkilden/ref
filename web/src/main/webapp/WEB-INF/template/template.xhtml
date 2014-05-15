@@ -6,13 +6,17 @@
       xmlns:ds="http://deltaspike.apache.org/jsf">
 
 <h:head>
-    <h:outputStylesheet name="reset.css" library="css" />
-    <h:outputStylesheet name="main.css" library="css" />
+         <f:facet name="first">
+             <h:outputStylesheet name="reset.css" library="css" />
 
+         </f:facet>
+    <h:outputStylesheet name="main.css" library="css" />
 
 </h:head>
 
-<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet name="style.css" library="css" id="style-last"/>
+    </f:facet>
     <h:body>
         <ds:windowId/>
         <p style="visibility: hidden" id="media-setter" class="set-media"/>
@@ -65,11 +69,6 @@
             </ui:insert>
             <o:cache scope="session">
             </o:cache>
-            <h:outputStylesheet library="css" name="reset.css"/>
-            <h:outputStylesheet library="css" name="style.css"/>
-
-
-
             <ui:insert name="first-content">
             </ui:insert>
 
@@ -82,8 +81,6 @@
 
                 </ui:insert>
             </div>
-
-
             <!-- 	<div class="floater"></div> -->
             <div class="ui-widget-header">
                 <footer class="wrapper">
@@ -94,6 +91,4 @@
             </div>
         </h:panelGroup>
     </h:body>
-
-</h:body>
 </html>

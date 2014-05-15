@@ -1,6 +1,7 @@
 package com.kildeen.ref.application.module.authorization;
 
 import com.kildeen.ref.domain.Fact;
+import com.kildeen.ref.domain.Group;
 import org.apache.deltaspike.data.api.EntityRepository;
 import org.apache.deltaspike.data.api.Repository;
 import org.apache.deltaspike.data.api.mapping.MappingConfig;
@@ -12,7 +13,7 @@ import org.apache.deltaspike.data.api.mapping.MappingConfig;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Repository (forEntity = Fact.class)
+@Repository (forEntity = Group.class)
 @MappingConfig(DefaultGroupMapper.class)
 public interface GroupRepository extends EntityRepository<GroupDTO, Long> {
 

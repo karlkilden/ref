@@ -10,8 +10,7 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -25,7 +24,7 @@ import java.util.List;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RequestScoped
+@ViewScoped
 @Named
 public class GroupBean implements Serializable {
 
@@ -42,6 +41,8 @@ public class GroupBean implements Serializable {
     private TreeNode[] selectedPermissions;
     private GroupDTO groupDTO = new GroupDTO();
     private List<GroupDTO> groups;
+    private GroupDTO selectedGroup;
+    private GroupDataModel groupDataModel;
 
 
     @PostConstruct
@@ -52,6 +53,11 @@ public class GroupBean implements Serializable {
         for (SystemNode node : systemNodeResolver.root()) {
             addChildren(node, root);
         }
+        fetchGroups();
+        groupDataModel = new GroupDataModel(groups);
+    }
+
+    private void fetchGroups() {
         groups = groupService.fetchGroups();
     }
 
@@ -97,5 +103,25 @@ public class GroupBean implements Serializable {
 
     public List<GroupDTO> getGroups() {
         return groups;
+    }
+
+    public void update() {
+        fetchGroups();
+    }
+
+    public void setSelectedGroup(GroupDTO selectedGroup) {
+        this.selectedGroup = selectedGroup;
+    }
+
+    public GroupDTO getSelectedGroup() {
+        return selectedGroup;
+    }
+
+    public GroupDataModel getGroupDataModel() {
+        return groupDataModel;
+    }
+
+    public void setGroupDataModel(GroupDataModel groupDataModel) {
+        this.groupDataModel = groupDataModel;
     }
 }

@@ -15,7 +15,7 @@ public interface Pages extends ViewConfig {
 
         public interface User {
 
-            class CreateUser implements ViewConfig {
+            public class CreateUser implements ViewConfig {
                 public class Delete {
 
                 }
@@ -24,7 +24,14 @@ public interface Pages extends ViewConfig {
 
         public interface Group {
 
-            class GroupSetup implements ViewConfig {
+            public class GroupSetup implements ViewConfig {
+                public class Delete {
+
+                }
+            }
+
+
+            public class Groups implements ViewConfig {
                 public class Delete {
 
                 }

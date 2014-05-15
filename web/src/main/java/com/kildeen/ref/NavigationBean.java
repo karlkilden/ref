@@ -1,8 +1,10 @@
 package com.kildeen.ref;
 
 import com.kildeen.ref.system.Current;
+import com.kildeen.ref.system.Pages;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
+import org.apache.deltaspike.core.api.config.view.ViewConfig;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
@@ -15,6 +17,8 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import static com.kildeen.ref.system.Pages.Admin.Group.GroupSetup;
 
 /**
  * <p>File created: 2014-05-11 20:25</p>
@@ -93,4 +97,7 @@ public class NavigationBean implements Serializable {
     }
 
 
+    public Class<? extends ViewConfig> getNavigateDefault() {
+        return GroupSetup.class;
+    }
 }

@@ -31,14 +31,13 @@ public class GroupServiceImpl implements GroupService {
     private SystemNodeResolver systemNodeResolver;
 
     @Override
-    @CacheResult
     public List<GroupDTO> fetchGroups() {
         return groupRepository.findAll();
     }
 
     @Override
     public GroupDTO fetchGroup(final long id) {
-return groupRepository.findBy(id);
+        return groupRepository.findBy(id);
     }
 
     @Override
