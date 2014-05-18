@@ -56,4 +56,8 @@ public class PermissionResolverMock implements PermissionResolver {
     }
 
 
+    @Override
+    public void boot() {
+
+    }
 }

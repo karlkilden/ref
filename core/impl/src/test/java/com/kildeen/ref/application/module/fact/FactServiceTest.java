@@ -3,10 +3,12 @@ package com.kildeen.ref.application.module.fact;
 import com.kildeen.ref.application.RollBackException;
 import com.kildeen.ref.domain.Word;
 import com.kildeen.ref.domain.WordOccurrence;
+import com.kildeen.ref.testutil.CDIRunner;
 import com.kildeen.ref.testutil.EJBRunner;
 import org.apache.bval.constraints.NotEmpty;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.deltaspike.data.api.QueryResult;
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.apache.openejb.junit.jee.config.Properties;
 import org.apache.openejb.junit.jee.config.Property;
 import org.junit.Test;
@@ -22,6 +24,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -33,7 +36,7 @@ import static org.junit.Assert.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(EJBRunner.class)
+@RunWith(CDIRunner.class)
 @Properties({@Property(key="openejb.jpa.init-entitymanager", value = "true")})
 public class FactServiceTest {
 
@@ -56,12 +59,11 @@ public class FactServiceTest {
         assertNotNull(factService.fetchByName("Highlander2"));
         assertNotNull(factService.fetchByName("Highlander2").getContent());
         FactDTO test1 = facts.get(0);
-        test1.setContent(test1.getContent()+ " test");
-        factService.save(test1);
+        test1.setContent(test1.getContent() + " test");
+        factService.save(test1); 
 
         FactDTO test2 = factService.fetchById(test1.getId());
         System.out.print(test2);
-
     }
 
 
@@ -75,7 +77,7 @@ public class FactServiceTest {
 
         FactDTO test1 = facts.get(0);
 
-        test1.setContent(test1.getContent()+ " test");
+        test1.setContent(test1.getContent() + " test");
         factService.save(test1);
         em.detach(test1);
 

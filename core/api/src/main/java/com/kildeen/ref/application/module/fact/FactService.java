@@ -17,8 +17,6 @@ public interface FactService {
 
     FactDTO fetchById(long id);
 
-    FactDTO getById(long id);
-
     FactDTO fetchByName(String name);
 
     QueryResult<FactDTO> fetchAllResult();
