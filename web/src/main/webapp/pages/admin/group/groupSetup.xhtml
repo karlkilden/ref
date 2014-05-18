@@ -20,7 +20,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/template/template.xhtml">
 
     <ui:define name="content">
@@ -51,9 +51,16 @@
 
             <p:tab title="Edit Group">
                 <h:form>
+                    <p:dataTable value="#{groupBean.groups}" var="group" style="width: 50%" id="selectGroupTable" styleClass="one-col-table one-col">
+                        <f:facet name="header">
+                            <div style="background: #f5f5f5; text-align: left"> <p:commandButton action="#{groupBean.update}" value="Update" update="selectGroupTable"/></div>
+                        </f:facet>
+                        
+                        <p:column id="group-name" filterBy="name" filterMatchMode="contains" styleClass="one-col">
+                            <f:facet name="header" >
+                                <div style="text-align: left">Name</div>
+                            </f:facet>
 
-                    <p:dataTable value="#{groupBean.groups}" var="group" >
-                        <p:column id="group-name" filterBy="name" headerText="Name" filterMatchMode="contains">
                             <h:outputText value="#{group.name}" />
                         </p:column>
 

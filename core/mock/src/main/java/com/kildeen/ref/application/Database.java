@@ -109,7 +109,7 @@ public class Database {
             // Admin group for system Access
             if (node.getDefinition() == Pages.Admin.class ||
                     node.getDefinition() == Pages.Admin.User.CreateUser.class ||
-                    node.getDefinition() == Pages.Admin.Group.CreateGroup.class) {
+                    node.getDefinition() == Pages.Admin.Group.GroupSetup.class) {
                 p_admin_group_user.add(p);
 
             }

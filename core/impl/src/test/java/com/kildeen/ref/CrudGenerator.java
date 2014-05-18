@@ -1,12 +1,9 @@
 package com.kildeen.ref;
 
 import com.kildeen.ref.application.module.fact.FactRepository;
-import com.kildeen.ref.system.InvalidLeaf;
 import com.kildeen.ref.system.Pages;
-import com.kildeen.ref.system.SystemNodeResolverImpl;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -23,7 +20,6 @@ import java.util.Scanner;
  */
 public class CrudGenerator {
 
-    @Test
     public void generate() throws Exception {
         System.out.println(Pages.Admin.Group.GroupSetup.class.getCanonicalName());
 
