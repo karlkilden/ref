@@ -1,12 +1,15 @@
 package com.kildeen.ref.application.module.fact;
 
+import com.kildeen.ref.system.ServiceFacade;
 import org.apache.deltaspike.data.api.QueryResult;
+import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.cache.Cache;
 import javax.cache.annotation.CacheDefaults;
 import javax.cache.annotation.CacheRemove;
 import javax.cache.annotation.CacheResult;
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -17,16 +20,15 @@ import java.util.List;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Stateless
+@ServiceFacade
 @CacheDefaults(cacheName = FactCache.FACT_CACHE)
-
 public class FactServiceImpl implements FactService {
 
     @Inject
     private FactRepository factRepository;
 
-    @Inject
-    private Cache<Long, FactDTO> cache;
+//    @Inject
+//    private Cache<Long, FactDTO> cache;
 
     
     @Override
@@ -50,10 +52,10 @@ public class FactServiceImpl implements FactService {
     }
 
     
-    @Override
-    public FactDTO getById(long id) {
-        return cache.get(id);
-    }
+//    @Override
+//    public FactDTO getById(long id) {
+//        return cache.get(id);
+//    }
 
     @Override
     public FactDTO fetchByName(String name) {
