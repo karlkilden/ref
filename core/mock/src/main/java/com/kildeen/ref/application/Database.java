@@ -102,7 +102,7 @@ public class Database {
 
     private void createPermissions() {
         for (SystemNode node : systemNodeResolver.nodes()) {
-            Permission p = new Permission(systemNodeResolver.getText(node));
+            Permission p = new Permission(node.getDefinition());
             p.setId(id++);
             ((SystemNodeImpl) node).setPermission(p);
 

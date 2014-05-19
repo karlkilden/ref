@@ -3,6 +3,7 @@ package com.kildeen.ref.permission;
 import com.kildeen.ref.application.module.authorization.GroupDTO;
 import com.kildeen.ref.application.module.authorization.GroupService;
 import com.kildeen.ref.domain.Permission;
+import com.kildeen.ref.system.Current;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
 import org.apache.deltaspike.jsf.api.message.JsfMessage;
@@ -10,12 +11,15 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * <p>File created: 2014-04-26 20:32</p>
@@ -37,21 +41,30 @@ public class GroupBean implements Serializable {
     @Inject
     private JsfMessage<Messages> msg;
 
+    @Inject
+    @Current
+    private Locale locale;
+
     private DefaultTreeNode root;
+    private List<TreeNode> selectedPermissionsList = new ArrayList<>();
     private TreeNode[] selectedPermissions;
     private GroupDTO groupDTO = new GroupDTO();
     private List<GroupDTO> groups;
     private GroupDTO selectedGroup;
     private GroupDataModel groupDataModel;
+    private boolean editSelected;
 
 
     @PostConstruct
-    private void createList() {
+    private void createPermissionTree() {
 
         root = new DefaultTreeNode("Root", null);
 
         for (SystemNode node : systemNodeResolver.root()) {
-            addChildren(node, root);
+            addChildren(node, root, editSelected);
+        }
+        if (editSelected) {
+            selectedPermissions = selectedPermissionsList.toArray(new TreeNode[0]);
         }
         fetchGroups();
         groupDataModel = new GroupDataModel(groups);
@@ -61,10 +74,18 @@ public class GroupBean implements Serializable {
         groups = groupService.fetchGroups();
     }
 
-    private void addChildren(final SystemNode node, TreeNode parent) {
+    private void addChildren(final SystemNode node, TreeNode parent, boolean customize) {
         TreeNode treeNode = new DefaultTreeNode(node.getPermission(), parent);
+        if (customize) {
+            for (Permission p : selectedGroup.getPermissions()) {
+                if (p.getName().equals(node.getPermissionName())) {
+                    selectedPermissionsList.add(treeNode);
+                    break;
+                }
+            }
+        }
         for (SystemNode child : node.children()) {
-            addChildren(child, treeNode);
+            addChildren(child, treeNode, customize);
         }
     }
 
@@ -72,17 +93,17 @@ public class GroupBean implements Serializable {
         return root;
     }
 
-    public TreeNode[] getSelectedPermissions() {
-        return selectedPermissions;
+    public List<TreeNode> getSelectedPermissionsList() {
+        return selectedPermissionsList;
     }
 
-    public void setSelectedPermissions(TreeNode[] selectedPermissions) {
-        this.selectedPermissions = selectedPermissions;
+    public void setSelectedPermissionsList(List<TreeNode> selectedPermissionsList) {
+        this.selectedPermissionsList = selectedPermissionsList;
     }
 
     public void createGroup() {
 
-        List<Permission> permissions = new ArrayList<>(selectedPermissions.length);
+        List<Permission> permissions = new ArrayList<>(selectedPermissionsList.size());
         for (TreeNode node : selectedPermissions) {
             permissions.add((Permission) node.getData());
         }
@@ -123,5 +144,26 @@ public class GroupBean implements Serializable {
 
     public void setGroupDataModel(GroupDataModel groupDataModel) {
         this.groupDataModel = groupDataModel;
+    }
+
+    public String getText(Permission permission) {
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+        return bundle.getString(permission.getName());
+    }
+
+    public void editSelected(ActionEvent event) {
+        editSelected = true;
+        selectedPermissionsList.clear();
+        createPermissionTree();
+        groupDTO = selectedGroup;
+    }
+
+    public TreeNode[] getSelectedPermissions() {
+        return selectedPermissions;
+    }
+
+    public void setSelectedPermissions(TreeNode[] selectedPermissions) {
+        this.selectedPermissions = selectedPermissions;
     }
 }

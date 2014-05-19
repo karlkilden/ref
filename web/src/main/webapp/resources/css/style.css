@@ -22,28 +22,32 @@ body {
     font-size: 12px;
 }
 
-#content {
-    margin: 10px auto;
-    width: 900px;
-    min-height: 500px;
-    background-color: white;
-    padding: 3px;
-    padding-left: 10px;
-    max-width: 90%;
-    Word-wrap:break-word;
+ul {
+    padding: 20px;
+}
 
+h1, h2, h3 {
+    color: #8f8095;
+
+}
+
+h1 {
+    margin: 20px 20px 8px 0;
+    font: 24px "Trebuchet MS", "Times New Roman", Times, serif;
 }
 
 h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
     margin: 20px 20px 8px 0;
     font: 20px "Trebuchet MS", "Times New Roman", Times, serif;
-    color: #004a80;
 }
 
 
-.label {
+h3 {
+    font: 18px "Trebuchet MS", "Times New Roman", Times, serif;
+}
+
+
+.label, .ui-datalist-item {
     font: 15px "Trebuchet MS","Times New Roman",Times,serif;
     color: #646464;
     margin-right: 4px;
@@ -57,12 +61,22 @@ h2 {
 .main-container {
     overflow: auto;
     background-color: white;
+    min-height: 600px;
+    margin: 10px auto;
+    width: 1024px;
+    min-height: 600px;
+    background-color: white;
+    padding: 3px;
+    padding-left: 10px;
+    max-width: 90%;
+    Word-wrap:break-word;
+
 }
 
 
 .one-col-table .ui-column-filter {
-    margin: 0px !important;
 }
+
 
 
 

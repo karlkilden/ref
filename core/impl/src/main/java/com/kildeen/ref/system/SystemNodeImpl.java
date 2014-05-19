@@ -1,6 +1,7 @@
 package com.kildeen.ref.system;
 
 import com.kildeen.ref.domain.Permission;
+import org.apache.deltaspike.core.api.config.view.ViewConfig;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -31,17 +32,16 @@ public class SystemNodeImpl implements SystemNode {
         if (definition.isInterface()) {
 
             if (childDefinitions.length == 0) {
-                throw new RuntimeException("A leaf cannot be defined as interface");
+                throw new RuntimeException("A Leaf or Branch cannot be defined as interface");
             }
             type = NodeType.STEM;
         } else {
 
-
-            if (childDefinitions.length == 0) {
-                type = NodeType.LEAF;
+            if (ViewConfig.class.isAssignableFrom(definition)) {
+                type = NodeType.BRANCH;
             } else {
-                if (parent != null && parent.type != NodeType.STEM) {
-                    throw new RuntimeException("A branch must have Stem parent. Hierarchy is nestled to deep. Use Interface -> Class -> Class at most");
+                if (parent != null && parent.type != NodeType.BRANCH) {
+                    throw new RuntimeException("A leaf must have branch parent");
                 }
                 type = NodeType.BRANCH;
             }
@@ -63,7 +63,7 @@ public class SystemNodeImpl implements SystemNode {
         if (definition.isAnnotationPresent(Named.class)) {
             permission = definition.getAnnotation(Named.class).value();
         } else {
-            permission = definition.getName();
+            permission = definition.getCanonicalName();
         }
         return permission;
     }

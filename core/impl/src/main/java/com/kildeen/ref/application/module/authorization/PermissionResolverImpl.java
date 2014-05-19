@@ -1,9 +1,6 @@
 package com.kildeen.ref.application.module.authorization;
 
 
-import com.kildeen.ref.application.module.authorization.GroupDTO;
-import com.kildeen.ref.application.module.authorization.GroupService;
-import com.kildeen.ref.application.module.authorization.PermissionRepository;
 import com.kildeen.ref.domain.Permission;
 import com.kildeen.ref.security.PermissionResolver;
 import com.kildeen.ref.system.SystemNode;
@@ -38,7 +35,7 @@ public class PermissionResolverImpl implements PermissionResolver {
     private GroupService groupService;
 
     @Inject
-    private PermissionRepository permissionRepository;
+    private PermissionService permissionService;
 
     @Inject
     private SystemNodeResolver systemNodeResolver;
@@ -58,14 +55,27 @@ public class PermissionResolverImpl implements PermissionResolver {
     @PostConstruct
     private void createPermissions() {
         for (SystemNode node : systemNodeResolver.nodes()) {
-            Permission permission = permissionRepository.findOptionalByNameEqual(node.getPermissionName());
+            Permission permission = permissionService.fetchByName(node.getPermissionName());
             if (permission == null) {
-                permission = new Permission(node.getPermissionName());
-                permission = permissionRepository.saveAndFlush(permission);
+                permission = new Permission(node.getDefinition());
+                permission = permissionService.createPermission(permission);
             }
             SystemNodeImpl impl = (SystemNodeImpl) node;
             impl.setPermission(permission);
         }
 
+        for (Permission p: permissionService.fetchPermissions()) {
+
+            boolean found = false;
+            for (SystemNode systemNode : systemNodeResolver.nodes()) {
+                if (p.getName().equals(systemNode.getPermissionName())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                permissionService.removePermission(p);
+            }
+        }
     }
 }

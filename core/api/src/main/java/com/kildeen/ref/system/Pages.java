@@ -30,14 +30,9 @@ public interface Pages extends ViewConfig {
                 }
             }
 
-
             public class Groups implements ViewConfig {
-                public class Delete {
-
-                }
             }
         }
-
 
     }
 

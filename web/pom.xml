@@ -87,6 +87,13 @@
             <version>1.0.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.30</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -147,7 +154,8 @@
                     </webapps>
 
                     <libs>
-                    <lib>postgresql:postgresql:9.1-901.jdbc4</lib>
+                    <!--<lib>postgresql:postgresql:9.1-901.jdbc4</lib>-->
+                        <lib>mysql:mysql-connector-java:5.1.30</lib>
                   <lib>remove:myfaces-api-2.1.13</lib>
                     <lib>remove:myfaces-impl-2.1.13</lib>
                     <lib>org.apache.myfaces.core:myfaces-api:2.2.3</lib>

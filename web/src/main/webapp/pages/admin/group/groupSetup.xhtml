@@ -27,33 +27,14 @@
 
         <p:accordionPanel>
             <p:tab title="Create Group">
-                <h:form>
-                    <div class="part-container">
 
-                        <div style="float: right"><span class="label">Add permissions:</span>
-                            <p:tree value="#{groupBean.root}" var="node" id="tree" selectionMode="checkbox"
-                                    style="width: 500px;"
-                                    propagateSelectionUp="false" selection="#{groupBean.selectedPermissions}">
-                                <p:treeNode id="treeNode">
-                                    <h:outputText value="#{node.name}" id="lblNode"/>
-                                </p:treeNode>
-                            </p:tree>
-                        </div>
-
-                        <div><p class="label">Name</p> <p:inputText value="#{groupBean.groupDTO.name}"/></div>
-
-                    </div>
-                    <p:commandButton value="Create Group" action="#{groupBean.createGroup}"/>
-
-                    <p:messages/>
-                </h:form>
             </p:tab>
 
             <p:tab title="Edit Group">
                 <h:form>
                     <p:dataTable value="#{groupBean.groups}" var="group" style="width: 50%" id="selectGroupTable" styleClass="one-col-table one-col">
                         <f:facet name="header">
-                            <div style="background: #f5f5f5; text-align: left"> <p:commandButton action="#{groupBean.update}" value="Update" update="selectGroupTable"/></div>
+                            <div style="background: #f5f5f5; text-align: left"> <p:commandButton action="#{groupBean.update}" value="Edit" update="selectGroupTable"/></div>
                         </f:facet>
                         
                         <p:column id="group-name" filterBy="name" filterMatchMode="contains" styleClass="one-col">

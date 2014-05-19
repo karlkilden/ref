@@ -26,8 +26,8 @@ public class Permission extends BaseEntity {
     @Column
     List<Group> groups;
 
-    public Permission(final String name) {
-        this.name = name;
+    public Permission(final Class<?> definition) {
+        this.name = definition.getCanonicalName();
     }
 
     public Permission() {
