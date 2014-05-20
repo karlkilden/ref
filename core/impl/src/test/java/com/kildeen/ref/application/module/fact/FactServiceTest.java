@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(CDIRunner.class)
+@RunWith(EJBContainerRunner.class)
 @Properties({@Property(key="openejb.jpa.init-entitymanager", value = "true")})
 public class FactServiceTest {
 
