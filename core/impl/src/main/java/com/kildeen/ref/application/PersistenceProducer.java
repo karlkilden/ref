@@ -1,6 +1,5 @@
 package com.kildeen.ref.application;
 
-import com.kildeen.ref.system.LogManager;
 import org.apache.deltaspike.data.api.audit.CurrentUser;
 
 import javax.annotation.PostConstruct;
@@ -24,7 +23,6 @@ public class PersistenceProducer implements Serializable {
     @PersistenceContext(unitName = "ref")
     @Produces
     private EntityManager entityManager;
-    private static org.slf4j.Logger log = LogManager.getLogger();
 
     @Produces
     @CurrentUser
@@ -35,6 +33,5 @@ public class PersistenceProducer implements Serializable {
 
     @PostConstruct
     private void init () {
-        log.info("persistence producer booted");
     }
 }

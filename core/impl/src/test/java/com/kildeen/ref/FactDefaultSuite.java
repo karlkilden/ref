@@ -14,12 +14,6 @@ import org.junit.runners.Suite;
 @RunWith(CdiTestSuiteRunner.class)
 @Suite.SuiteClasses({
         FactServiceTest.class,
-        EagerManagerTest.class,
-        FactServiceMockTest.class,
-        SystemNodeTest.class,
-        PermissionResolverImplTest.class
-
-
 })
-public class SuiteLevelContainerControl {
+public class FactDefaultSuite {
 }

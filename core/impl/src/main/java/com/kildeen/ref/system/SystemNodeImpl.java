@@ -40,10 +40,10 @@ public class SystemNodeImpl implements SystemNode {
             if (ViewConfig.class.isAssignableFrom(definition)) {
                 type = NodeType.BRANCH;
             } else {
-                if (parent != null && parent.type != NodeType.BRANCH) {
+                if (this.parent != null && parent.type != NodeType.BRANCH) {
                     throw new RuntimeException("A leaf must have branch parent");
                 }
-                type = NodeType.BRANCH;
+                type = NodeType.LEAF;
             }
         }
         this.permissionName = getPermissionName(definition);

@@ -7,6 +7,7 @@ import org.apache.openejb.junit.jee.EJBContainerRunner;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.Statement;
 
 import java.util.logging.Logger;
 
@@ -46,6 +47,12 @@ public class EJBRunner extends EJBContainerRunner {
         } finally {
             ProjectStageProducer.setProjectStage(previousProjectStage);
         }
+    }
+
+    @Override
+    protected Statement withBeforeClasses(Statement statement) {
+        final Statement superStatement = super.withBeforeClasses(statement);
+        return superStatement;
     }
 
 }
