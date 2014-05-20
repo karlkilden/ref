@@ -71,14 +71,8 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
-            <version>2.2.3</version>
+            <version>${myfaces.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.0</version>
         </dependency>
 
         <dependency>
@@ -135,7 +129,6 @@
                     <synchronization>
                         <updateInterval>1</updateInterval>
                         <extensions>
-                            <extension>.class</extension>
                             <updateOnlyExtension>.xhtml</updateOnlyExtension>
                             <updateOnlyExtension>.js</updateOnlyExtension>
                             <updateOnlyExtension>.css</updateOnlyExtension>
@@ -151,10 +144,10 @@
                     <libs>
                     <!--<lib>postgresql:postgresql:9.1-901.jdbc4</lib>-->
                         <lib>mysql:mysql-connector-java:5.1.30</lib>
-                  <lib>remove:myfaces-api-2.1.13</lib>
-                    <lib>remove:myfaces-impl-2.1.13</lib>
-                    <lib>org.apache.myfaces.core:myfaces-api:2.2.3</lib>
-                    <lib>org.apache.myfaces.core:myfaces-impl:2.2.3</lib>
+                        <lib>remove:myfaces-api-2.1.13</lib>
+                        <lib>remove:myfaces-impl-2.1.13</lib>
+                        <lib>org.apache.myfaces.core:myfaces-api:${myfaces.version}</lib>
+                        <lib>org.apache.myfaces.core:myfaces-impl:${myfaces.version}</lib>
                     </libs>
 
                 </configuration>

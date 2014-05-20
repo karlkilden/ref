@@ -1,12 +1,14 @@
 package com.kildeen.ref.permission;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.model.ListDataModel;
 
 import com.kildeen.ref.application.module.authorization.GroupDTO;
+import com.kildeen.ref.system.ServiceFacade;
 import org.primefaces.model.SelectableDataModel;
  
-public class GroupDataModel extends ListDataModel<GroupDTO> implements SelectableDataModel<GroupDTO> {
+public class GroupDataModel extends ListDataModel<GroupDTO> implements SelectableDataModel<GroupDTO>, Serializable {
  
     public GroupDataModel() {
     }

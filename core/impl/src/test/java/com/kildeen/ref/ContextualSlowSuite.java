@@ -5,9 +5,7 @@ import com.kildeen.ref.application.module.fact.FactServiceTest;
 import com.kildeen.ref.application.module.fact.SlowFactServiceTest;
 import com.kildeen.ref.system.LeafTest;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestSuiteRunner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.Configurator;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -27,6 +25,5 @@ public class ContextualSlowSuite {
 
     @BeforeClass
     public static void tearDown() {
-        Configurator.shutdown((LoggerContext) LogManager.getContext());
     }
 }

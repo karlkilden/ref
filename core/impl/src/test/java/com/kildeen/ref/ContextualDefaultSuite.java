@@ -9,9 +9,7 @@ import com.kildeen.ref.security.PermissionResolverImplTest;
 import com.kildeen.ref.system.LeafTest;
 import com.kildeen.ref.system.SystemNodeTest;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestSuiteRunner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.Configurator;
+
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -30,6 +28,5 @@ import org.junit.runners.Suite;
 public class ContextualDefaultSuite {
     @AfterClass
     public static void tearDown() {
-        Configurator.shutdown((LoggerContext) LogManager.getContext());
     }
 }
