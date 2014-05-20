@@ -31,7 +31,7 @@ public class SystemNodeTest {
         SystemNode node = new SystemNodeImpl(InvalidStem.class, null);
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = RuntimeException.class)
     public void branch_with_branch_as_child_is_recognized_as_invalid() {
         SystemNode node = new SystemNodeImpl(InvalidLeaf.class, null);
     }

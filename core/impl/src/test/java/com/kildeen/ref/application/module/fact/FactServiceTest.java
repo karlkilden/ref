@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(EJBContainerRunner.class)
+@RunWith(CDIRunner.class)
 @Properties({@Property(key="openejb.jpa.init-entitymanager", value = "true")})
 public class FactServiceTest {
 
@@ -134,23 +134,6 @@ public class FactServiceTest {
             }
         }
         assertEquals(0, expectedCount);
-
-    }
-
-    @Test
-    public void bulk_save_should_be_readable_as_pages() {
-        for (int i = 0; i < 100; i++) {
-            FactDTO fact = new FactDTO();
-            fact.setName(RandomStringUtils.random(5));
-            factService.save(fact);
-        }
-        QueryResult<FactDTO> result = factService.fetchAllResult().withPageSize(100);
-        int totalPages = result.countPages();
-        result.count();
-        result.getResultList();
-
-        result.nextPage().getResultList();
-        result.nextPage().getResultList();
 
     }
 

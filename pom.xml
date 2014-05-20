@@ -23,8 +23,7 @@
         <openjpa.version>2.3.0</openjpa.version>
         <public.module>0.6</public.module>
         <public.module>0.6</public.module>
-        <default.suite>**/*DefaultSuite.java</default.suite>
-
+        <disable.tests>NONE</disable.tests>
 
 
     </properties>
@@ -42,7 +41,6 @@
                 <artifactId>ref-core-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
 
             <dependency>
@@ -108,21 +106,21 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-log4j12</artifactId>-->
-            <!--<version>1.7.7</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--<version>1.7.7</version>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-api</artifactId>-->
-            <!--<version>1.7.7</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-api</artifactId>-->
+        <!--<version>1.7.7</version>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>log4j</groupId>-->
-            <!--<artifactId>log4j</artifactId>-->
-            <!--<version>1.2.17</version>-->
+        <!--<groupId>log4j</groupId>-->
+        <!--<artifactId>log4j</artifactId>-->
+        <!--<version>1.2.17</version>-->
         <!--</dependency>-->
 
         <dependency>
@@ -140,28 +138,30 @@
 
     <profiles>
         <profile>
-            <id>test</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.openejb.maven</groupId>
-                        <artifactId>tomee-maven-plugin</artifactId>
-                        <version>1.6.0</version>
-                        <configuration>
-                            <!--
-                                                <context>ROOT</context>
-                            -->
-                            <webapps>
-                                <webapp>
-                                    com.kildeen.ref:ref-web:${project.version}:war?name=apa
-                                </webapp>
-                            </webapps>
-
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <id>default</id>
+            <properties>
+                <disable.tests>**/*Slow*</disable.tests>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
+
+        <profile>
+            <id>all</id>
+            <properties>
+                <disable.tests>NONE</disable.tests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>fast</id>
+            <properties>
+                <disable.tests>**/Contextual*</disable.tests>
+            </properties>
+        </profile>
+
+
     </profiles>
 
     <build>
@@ -183,8 +183,12 @@
 
                 <configuration>
                     <includes>
-                        <include>${default.suite}</include>
+                        <include>**/*Suite.java</include>
                     </includes>
+
+                    <excludes>
+                        <exclude>${disable.tests}</exclude>
+                    </excludes>
                 </configuration>
 
             </plugin>
@@ -197,7 +201,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-         
+
         </plugins>
     </build>
 
