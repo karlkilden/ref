@@ -14,16 +14,25 @@
 
 
     <properties>
+        <primefaces.version>5.0</primefaces.version>
+        <omnifaces.version>1.7</omnifaces.version>
+        <primefaces.themes.version>1.0.10</primefaces.themes.version>
+
+        <!-- TomEE setup -->
+
+        <!--  MySQL  -->
+        <database.driver>mysql:mysql-connector-java:5.1.30</database.driver>
+
+        <!-- postgres -->
+        <!--<database.driver>postgresql:postgresql:9.1-901.jdbc4</database.driver>-->
+
+        <!-- Library upgrades -->
+
+        <tomee.remove.myfaces.version>2.1.13</tomee.remove.myfaces.version>
 
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.0</version>
-        </dependency>
 
         <dependency>
             <groupId>com.kildeen.ref</groupId>
@@ -37,16 +46,36 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>${myfaces.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>all-themes</artifactId>
+            <version>${primefaces.themes.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>1.7</version>
+            <version>${omnifaces.version}</version>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -68,29 +97,13 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-api</artifactId>
-            <version>${myfaces.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>all-themes</artifactId>
-            <version>1.0.10</version>
-        </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>5.1.30</version>-->
-        <!--</dependency>-->
-
-
     </dependencies>
 
+
     <build>
+
+
+
 
 
         <plugins>
@@ -119,7 +132,7 @@
             <plugin>
                 <groupId>org.apache.openejb.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>${tomee.version}</version>
                 <configuration>
                     <context>ROOT</context>
                     <systemVariables>
@@ -142,10 +155,9 @@
                     </webapps>
 
                     <libs>
-                    <!--<lib>postgresql:postgresql:9.1-901.jdbc4</lib>-->
-                        <lib>mysql:mysql-connector-java:5.1.30</lib>
-                        <lib>remove:myfaces-api-2.1.13</lib>
-                        <lib>remove:myfaces-impl-2.1.13</lib>
+                        <lib>${database.driver}</lib>
+                        <lib>remove:myfaces-api-${tomee.remove.myfaces.version}</lib>
+                        <lib>remove:myfaces-impl-${tomee.remove.myfaces.version}</lib>
                         <lib>org.apache.myfaces.core:myfaces-api:${myfaces.version}</lib>
                         <lib>org.apache.myfaces.core:myfaces-impl:${myfaces.version}</lib>
                     </libs>

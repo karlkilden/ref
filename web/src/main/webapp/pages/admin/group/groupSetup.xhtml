@@ -27,7 +27,26 @@
 
         <p:accordionPanel>
             <p:tab title="Create Group">
+                <h:form>
+                    <div class="part-container">
 
+                        <div style="float: right"><span class="label">Add permissions:</span>
+                            <p:tree value="#{groupBean.root}" var="node" id="tree" selectionMode="checkbox"
+                                    style="width: 500px;"
+                                    propagateSelectionUp="false" selection="#{groupBean.selectedPermissions}">
+                                <p:treeNode id="treeNode">
+                                    <h:outputText value="#{node.name}" id="lblNode"/>
+                                </p:treeNode>
+                            </p:tree>
+                        </div>
+
+                        <div><p class="label">Name</p> <p:inputText value="#{groupBean.groupDTO.name}"/></div>
+
+                    </div>
+                    <p:commandButton value="Create Group" action="#{groupBean.createGroup}"/>
+
+                    <p:messages/>
+                </h:form>
             </p:tab>
 
             <p:tab title="Edit Group">
