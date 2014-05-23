@@ -3,8 +3,7 @@ package com.kildeen.ref.application.module.authorization;
 import com.kildeen.ref.user.UserContext;
 import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigResolver;
 
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+
 import javax.inject.Inject;
 import java.io.Serializable;
 
@@ -15,15 +14,12 @@ import java.io.Serializable;
  * @author: Karl Kildén
  * @since 1.0
  */
-@ViewScoped
 public class PermissionContext implements Serializable {
 
     @Inject
     private UserContext userContext;
 
 
-    @Inject
-    private FacesContext facesContext;
 
     @Inject
     private ViewConfigResolver viewConfigResolver;

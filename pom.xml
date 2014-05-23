@@ -84,7 +84,7 @@
             <groupId>org.apache.openejb</groupId>
             <artifactId>javaee-api</artifactId>
             <version>6.0-5</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
