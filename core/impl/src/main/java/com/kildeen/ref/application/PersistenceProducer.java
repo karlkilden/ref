@@ -23,15 +23,4 @@ public class PersistenceProducer implements Serializable {
     @PersistenceContext(unitName = "ref")
     @Produces
     private EntityManager entityManager;
-
-    @Produces
-    @CurrentUser
-    private String user() {
-
-        return "apa";
-    }
-
-    @PostConstruct
-    private void init () {
-    }
 }

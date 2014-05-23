@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "ref_group")
-public class Group extends BaseAuditEntity {
+public class Group2 extends BaseAuditEntity {
 
     @Column
     private String name;
@@ -23,6 +23,8 @@ public class Group extends BaseAuditEntity {
     @OneToMany
     private List<Permission> permissions;
 
+    @OneToOne
+    private User latestAddedUser;
 
     public String getName() {
         return name;
@@ -46,5 +48,13 @@ public class Group extends BaseAuditEntity {
 
     public void setPermissions(final List<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public User getLatestAddedUser() {
+        return latestAddedUser;
+    }
+
+    public void setLatestAddedUser(User user) {
+        this.latestAddedUser = user;
     }
 }

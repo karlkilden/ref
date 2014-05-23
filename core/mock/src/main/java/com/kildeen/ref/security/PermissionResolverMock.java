@@ -11,6 +11,8 @@ import com.kildeen.ref.system.SystemNodeResolver;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,10 +26,8 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Singleton
-@ConcurrencyManagement(BEAN)
-@Startup
-@Lock(LockType.READ)
+@ApplicationScoped
+@Alternative
 public class PermissionResolverMock implements PermissionResolver {
 
     private static final String PERMISSION_RESOLVER_CACHE = "permissionResolverCache";

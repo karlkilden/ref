@@ -1,6 +1,7 @@
 package com.kildeen.ref.system;
 
 import com.kildeen.ref.application.module.authorization.PermissionResolverImpl;
+import com.kildeen.ref.security.PermissionResolver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +28,7 @@ public class ApplicationStart implements Serializable {
 
     private static final Logger log = LogManager.getLogger(ApplicationStart.class);
     @Inject
-    private PermissionResolverImpl permissionResolver;
+    private PermissionResolver permissionResolver;
 
 
     @PostConstruct

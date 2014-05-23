@@ -4,6 +4,8 @@ import com.kildeen.ref.application.Database;
 import org.apache.deltaspike.data.api.QueryResult;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -14,7 +16,8 @@ import java.util.List;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Stateless
+@ApplicationScoped
+@Alternative
 public class FactServiceMock implements FactService {
 
 

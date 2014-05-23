@@ -9,7 +9,6 @@ import com.kildeen.ref.system.*;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import javax.faces.event.PostConstructApplicationEvent;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +31,9 @@ public class Database {
     private List<FactDTO> allFacts = new ArrayList<>();
 
     @Inject
-    private SystemNodeResolverMock systemNodeResolver;
+    private SystemNodeResolver systemNodeResolver;
 
-    private void boot(@Observes PostConstructApplicationEvent event) {
+    private void boot(@Observes WebStartupEvent event) {
         System.out.println("Booted db");
     }
 
