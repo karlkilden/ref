@@ -1,5 +1,6 @@
 package com.kildeen.ref.api;
 
+import javax.enterprise.inject.Alternative;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,6 +14,7 @@ import java.util.Map;
  * @author: Karl Kildén
  * @since 1.0
  */
+@Alternative
 public class EntityManagerMock implements EntityManager {
     @Override
     public void persist(final Object entity) {

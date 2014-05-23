@@ -3,6 +3,7 @@ package com.kildeen.ref.application.module.authorization;
 
 import com.kildeen.ref.domain.Permission;
 import com.kildeen.ref.security.PermissionResolver;
+import com.kildeen.ref.system.ServiceFacade;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeImpl;
 import com.kildeen.ref.system.SystemNodeResolver;
@@ -27,7 +28,7 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
  * @author: Karl Kildén
  * @since 1.0
  */
-@ApplicationScoped
+@ServiceFacade
 public class PermissionResolverImpl implements PermissionResolver {
 
     private static final String PERMISSION_RESOLVER_CACHE = "permissionResolverCache";
@@ -84,6 +85,5 @@ public class PermissionResolverImpl implements PermissionResolver {
 
     @Override
     public void boot() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

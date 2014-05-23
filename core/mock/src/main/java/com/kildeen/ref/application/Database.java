@@ -31,7 +31,7 @@ public class Database {
     private List<FactDTO> allFacts = new ArrayList<>();
 
     @Inject
-    private SystemNodeResolverMock systemNodeResolver;
+    private SystemNodeResolver systemNodeResolver;
 
     private void boot(@Observes WebStartupEvent event) {
         System.out.println("Booted db");

@@ -24,12 +24,15 @@ public class GroupDTO extends BaseAuditDTO {
     @NotEmpty
     @NotNull
     private String name;
+
     private List<User> users;
 
+    private User latestAddedUser;
 
-    public GroupDTO(final String name, final List<Permission> permissions) {
+    public GroupDTO(final String name, final List<Permission> permissions, User latestAddedUser) {
         this.permissions = permissions;
         this.name = name;
+        this.latestAddedUser = latestAddedUser;
     }
 
     public GroupDTO() {
@@ -59,5 +62,13 @@ public class GroupDTO extends BaseAuditDTO {
 
     public void setPermissions(final List<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public User getLatestAddedUser() {
+        return latestAddedUser;
+    }
+
+    public void setLatestAddedUser(User latestAddedUser) {
+        this.latestAddedUser = latestAddedUser;
     }
 }

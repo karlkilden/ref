@@ -4,6 +4,7 @@ import com.kildeen.ref.domain.User;
 import com.kildeen.ref.system.Current;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Produces;
 import java.io.Serializable;
 import java.util.Locale;
@@ -16,6 +17,7 @@ import java.util.Locale;
  * @since 1.0
  */
 @SessionScoped
+@Alternative
 public class UserContextMock implements Serializable {
 
     private User user;

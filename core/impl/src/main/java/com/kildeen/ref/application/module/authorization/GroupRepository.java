@@ -14,7 +14,7 @@ import org.apache.deltaspike.data.api.mapping.MappingConfig;
  * @since 1.0
  */
 @Repository (forEntity = Group.class)
-@MappingConfig(DefaultGroupMapper.class)
+@MappingConfig(GroupMapper.class)
 public interface GroupRepository extends EntityRepository<GroupDTO, Long> {
 
     public GroupDTO findOptionalByNameEqual(String name);

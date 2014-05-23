@@ -6,6 +6,8 @@ import com.kildeen.ref.domain.User;
 
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.Singleton;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -18,8 +20,9 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Singleton
-@ConcurrencyManagement(BEAN)
+
+@ApplicationScoped
+@Alternative
 public class UserServiceMock implements UserService {
     @Inject
     Database database;

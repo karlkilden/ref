@@ -42,6 +42,14 @@
         <h1>Groups</h1>
 
         <h:form id="groups-form">
+
+            <div class="page-controls">
+                <p:commandButton action="#{groupBean.update}" value="Back" update="@all" actionListener="#{groupBean.editSelected}" styleClass="page-control"/>
+                <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" actionListener="#{groupBean.editSelected}" styleClass="page-control"/>
+
+
+            </div>
+
             <p:dataTable value="#{groupBean.groupDataModel}" var="group" style="width: 75%" id="selectGroupTable"
                          styleClass="one-col-table" selection="#{groupBean.selectedGroup}" selectionMode="single">
 
@@ -49,17 +57,20 @@
 
                 <p:column id="group-name" filterBy="#{group.name}" filterMatchMode="contains">
                     <f:facet name="header">
-                        <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" actionListener="#{groupBean.editSelected}"
-                                         style="right: 20%; height: 110%"/>
+                        <div style="text-align: left; margin-bottom: 4px;">Group</div>
+
                     </f:facet>
 
                     <h:outputText value="#{group.name}"/>
                 </p:column>
 
-                <p:column id="groupLatestMember" headerText="Last Added" style="width: 40px;">
-                    <h:outputText value="#{group.name}"/>
+                <p:column id="groupMembers" headerText="Members">
+                    <h:outputText value="#{group.latestAddedUser}"/>
                 </p:column>
 
+                <p:column id="groupLatestMember" headerText="Last Added" style="width: 40px;">
+                    <h:outputText value="#{group.latestAddedUser}"/>
+                </p:column>
             </p:dataTable>
             <p:messages/>
         </h:form>

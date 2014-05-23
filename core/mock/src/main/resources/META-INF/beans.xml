@@ -17,6 +17,14 @@
 
     </decorators>
 
+    <alternatives>
+        <class>com.kildeen.ref.application.module.authorization.GroupServiceMock</class>
+        <class>com.kildeen.ref.application.module.fact.WordServiceMock</class>
+        <class>com.kildeen.ref.security.PermissionResolverMock</class>
+        <class>com.kildeen.ref.UserContextMock</class>
+        <class>com.kildeen.ref.api.EntityManagerMock</class>
+        <class>com.kildeen.ref.application.module.authorization.PermissionServiceMock</class>
+    </alternatives>
 
 
 </beans>
