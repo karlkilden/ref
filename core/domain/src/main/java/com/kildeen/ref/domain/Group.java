@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "ref_group")
-public class Group2 extends BaseAuditEntity {
+public class Group extends BaseAuditEntity {
 
     @Column
     private String name;

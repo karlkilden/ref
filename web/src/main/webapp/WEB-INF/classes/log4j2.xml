@@ -12,8 +12,8 @@
             </PatternLayout>
         </Console>
 
-        <Socket name="socket" host="localhost" port="9500">
-            <SerializedLayout />
+        <Socket name="socket" host="localhost" port="7000">
+            <SerializedLogEventLayout />
         </Socket>
     </Appenders>
     <Loggers>

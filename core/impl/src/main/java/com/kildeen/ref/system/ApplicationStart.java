@@ -2,8 +2,8 @@ package com.kildeen.ref.system;
 
 import com.kildeen.ref.application.module.authorization.PermissionResolverImpl;
 import com.kildeen.ref.security.PermissionResolver;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+
 
 import javax.annotation.PostConstruct;
 import javax.ejb.ConcurrencyManagement;
@@ -26,7 +26,7 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
 @Startup
 public class ApplicationStart implements Serializable {
 
-    private static final Logger log = LogManager.getLogger(ApplicationStart.class);
+    private static final Logger log = LogManager.getLogger();
     @Inject
     private PermissionResolver permissionResolver;
 
