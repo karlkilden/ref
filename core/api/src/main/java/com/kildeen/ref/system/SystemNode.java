@@ -31,4 +31,9 @@ public interface SystemNode extends Serializable {
     Class<?> getDefinition();
 
     Permission getPermission();
+    
+    String getPath();
+    
+    String getPage();
+        
 }

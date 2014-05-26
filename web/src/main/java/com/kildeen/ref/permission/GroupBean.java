@@ -62,7 +62,6 @@ public class GroupBean {
     private void init() {
         fetchGroups();
         groupDataModel = new GroupDataModel(groups);
-
     }
 
     private void fetchGroups() {

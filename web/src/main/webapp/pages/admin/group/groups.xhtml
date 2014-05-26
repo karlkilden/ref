@@ -39,15 +39,12 @@
                 border-color: gainsboro;
             }
         </style>
-        <h1>Groups</h1>
 
         <h:form id="groups-form">
 
             <div class="page-controls">
                 <p:commandButton action="#{groupBean.update}" value="Back" update="@all" styleClass="page-control"/>
                 <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" styleClass="page-control"/>
-
-
             </div>
 
             <p:dataTable value="#{groupBean.groupDataModel}" var="group" style="width: 75%" id="selectGroupTable"
@@ -69,6 +66,7 @@
                     <ui:repeat value="#{group.users}" var="user">
                     <h:outputText value="#{user.name} "/>
                     </ui:repeat>
+                    
                 </p:column>
 
                 <p:column id="groupLatestMember" headerText="Last Added" style="width: 40px;">

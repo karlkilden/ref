@@ -1,9 +1,8 @@
-package com.kildeen.ref.context;
+package com.kildeen.ref.system;
 
 
 import com.kildeen.ref.system.Current;
-import com.kildeen.ref.system.Index;
-import com.kildeen.ref.system.Pages;
+import com.kildeen.ref.system.TestIndex;
 
 import javax.enterprise.inject.Produces;
 
@@ -22,12 +21,12 @@ import java.util.Set;
  * @since 1.0
  */
 
-public class PagesProducer {
+public class TestPagesProducer {
 
     @Produces
     @Current
     public List<Class<? extends ViewConfig>> rootNodes() {
 
-        return Arrays.asList(Index.class, Pages.class);
+        return Arrays.asList(TestIndex.class, TestPages.class);
     }
 }

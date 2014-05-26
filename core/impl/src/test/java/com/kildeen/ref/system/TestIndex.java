@@ -9,5 +9,6 @@ import org.apache.deltaspike.core.api.config.view.ViewConfig;
  * @author: Karl Kildén
  * @since 1.0
  */
-public class Index implements ViewConfig {
+public class TestIndex implements ViewConfig {
+
 }

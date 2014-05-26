@@ -39,17 +39,13 @@ public class NavigationBean implements Serializable {
     @Inject
     private SystemNodeResolver systemNodeResolver;
 
-
-    @Inject
-    @Current
-    private Locale locale;
-
     @Inject
     FacesContext facesContext;
 
     private MenuModel model = new DefaultMenuModel();
+
     @Inject
-    private ViewConfigResolver viewConfigResolver;
+    private BundleBean bundleBean;
 
     @PostConstruct
     private void setupNavigation() {
@@ -66,12 +62,12 @@ public class NavigationBean implements Serializable {
     private void addNode(final MenuModel model, final SystemNode node) {
         if (systemNodeResolver.getNavigationalNodes().contains(node.getDefinition())) {
             if (node.isStem()) {
-                DefaultSubMenu subMenu = new DefaultSubMenu(getText(node));
+                DefaultSubMenu subMenu = new DefaultSubMenu(bundleBean.getText(node));
                 model.addElement(subMenu);
                 addSubMenu(subMenu, node);
 
             } else if (node.isBranch()) {
-                DefaultMenuItem item = new DefaultMenuItem(getText(node));
+                DefaultMenuItem item = new DefaultMenuItem(bundleBean.getText(node));
                 item.setOutcome(node.getDefinition().toString());
                 model.addElement(item);
             }
@@ -82,11 +78,11 @@ public class NavigationBean implements Serializable {
     private void addSubMenu(final DefaultSubMenu subMenu, final SystemNode node) {
         for (SystemNode child : node.children()) {
             if (child.isStem()) {
-                DefaultSubMenu sm = new DefaultSubMenu(getText(child));
+                DefaultSubMenu sm = new DefaultSubMenu(bundleBean.getText(child));
                 subMenu.addElement(sm);
                 addSubMenu(sm, child);
             } else if (child.isBranch()) {
-                DefaultMenuItem item = new DefaultMenuItem(getText(child));
+                DefaultMenuItem item = new DefaultMenuItem(bundleBean.getText(child));
                 item.setOutcome(child.getDefinition().toString());
                 subMenu.addElement(item);
             }
@@ -97,16 +93,10 @@ public class NavigationBean implements Serializable {
         return model;
     }
 
-    public String getText(SystemNode systemNode) {
-        ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
-
-        return bundle.getString(systemNode.getDefinition().getCanonicalName());
-    }
-
     public String getViewHeader() {
-        return getText(systemNodeResolver.byId(viewConfigResolver.getConfigDescriptor(facesContext.getViewRoot().getViewId()).getConfigClass().getCanonicalName()));
+        return "";
     }
-
+    
     public Class<? extends ViewConfig> getNavigateDefault() {
         return Groups.class;
     }

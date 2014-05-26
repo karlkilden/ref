@@ -1,9 +1,11 @@
 package com.kildeen.ref.system;
 
 import com.kildeen.ref.domain.Permission;
+
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
 
 import javax.inject.Named;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class SystemNodeImpl implements SystemNode {
     private SystemNode parent;
     private NodeType type;
     private Permission permission;
+	private String path;
+	private String page;
 
     public SystemNodeImpl(final Class<?> definition, SystemNodeImpl parent) {
         this.definition = definition;
@@ -116,4 +120,24 @@ public class SystemNodeImpl implements SystemNode {
     private enum NodeType {
         STEM, BRANCH, LEAF
     }
+
+
+	@Override
+	public String getPath() {
+		
+		return path;
+	}
+
+	@Override
+	public String getPage() {
+		return page;
+	}
+
+	public void setupPath(String path) {
+		this.path = path;
+		
+		if (isBranch()) {
+			this.page = path.substring(path.lastIndexOf("/")+1);
+		}
+	}
 }
