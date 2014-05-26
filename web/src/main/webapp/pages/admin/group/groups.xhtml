@@ -44,8 +44,8 @@
         <h:form id="groups-form">
 
             <div class="page-controls">
-                <p:commandButton action="#{groupBean.update}" value="Back" update="@all" actionListener="#{groupBean.editSelected}" styleClass="page-control"/>
-                <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" actionListener="#{groupBean.editSelected}" styleClass="page-control"/>
+                <p:commandButton action="#{groupBean.update}" value="Back" update="@all" styleClass="page-control"/>
+                <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" styleClass="page-control"/>
 
 
             </div>
@@ -65,12 +65,20 @@
                 </p:column>
 
                 <p:column id="groupMembers" headerText="Members">
-                    <h:outputText value="#{group.latestAddedUser}"/>
+
+                    <ui:repeat value="#{group.users}" var="user">
+                    <h:outputText value="#{user.name} "/>
+                    </ui:repeat>
                 </p:column>
 
                 <p:column id="groupLatestMember" headerText="Last Added" style="width: 40px;">
-                    <h:outputText value="#{group.latestAddedUser}"/>
+                    <h:outputText value="#{group.latestAddedUser.name}"/>
                 </p:column>
+
+                <p:column id="groupEdit">
+                    <p:commandButton action="#{groupBean.edit(group)}" value="Edit"/>
+                </p:column>
+
             </p:dataTable>
             <p:messages/>
         </h:form>

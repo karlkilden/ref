@@ -21,9 +21,11 @@ public class GroupMapper extends SimpleQueryInOutMapperBase<Group, GroupDTO> {
     @Override
     protected GroupDTO toDto(final Group group) {
 
-        GroupDTO dto = new GroupDTO(group.getName(), group.getPermissions(), group.getLatestAddedUser());
+        GroupDTO dto = new GroupDTO(group.getName(), group.getPermissions());
         MapperUtil.toAuditDTO(dto, group);
-        dto.setUsers(group.getUsers());
+            dto.setUsers(group.getUsers());
+
+        dto.setLatestAddedUser(group.getLatestAddedUser());
         return dto;
     }
 

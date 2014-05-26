@@ -17,7 +17,7 @@ public class Group extends BaseAuditEntity {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<User> users;
 
     @OneToMany

@@ -5,6 +5,8 @@ import com.kildeen.ref.system.Pages;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
+import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigDescriptor;
+import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigResolver;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
@@ -12,6 +14,7 @@ import org.primefaces.model.menu.MenuModel;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -19,6 +22,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static com.kildeen.ref.system.Pages.Admin.Group.GroupSetup;
+import static com.kildeen.ref.system.Pages.Admin.Group.Groups;
 
 /**
  * <p>File created: 2014-05-11 20:25</p>
@@ -40,7 +44,12 @@ public class NavigationBean implements Serializable {
     @Current
     private Locale locale;
 
+    @Inject
+    FacesContext facesContext;
+
     private MenuModel model = new DefaultMenuModel();
+    @Inject
+    private ViewConfigResolver viewConfigResolver;
 
     @PostConstruct
     private void setupNavigation() {
@@ -82,8 +91,6 @@ public class NavigationBean implements Serializable {
                 subMenu.addElement(item);
             }
         }
-
-
     }
 
     public MenuModel getModel() {
@@ -96,8 +103,11 @@ public class NavigationBean implements Serializable {
         return bundle.getString(systemNode.getDefinition().getCanonicalName());
     }
 
+    public String getViewHeader() {
+        return getText(systemNodeResolver.byId(viewConfigResolver.getConfigDescriptor(facesContext.getViewRoot().getViewId()).getConfigClass().getCanonicalName()));
+    }
 
     public Class<? extends ViewConfig> getNavigateDefault() {
-        return GroupSetup.class;
+        return Groups.class;
     }
 }

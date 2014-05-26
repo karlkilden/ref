@@ -40,8 +40,8 @@ public class Database {
     @PostConstruct
     public void setupDatabase() {
         createPermissions();
-        createGroups();
         createUsers();
+        createGroups();
         createFacts();
     }
 
@@ -78,24 +78,30 @@ public class Database {
 
 
         User u2 = new User();
-        u1.setId(id++);
-        u1.setName("Ann");
+        u2.setId(id++);
+        u2.setName("Ann");
+        allUsers.add(u2);
 
 
         User u3 = new User();
-        u1.setId(id++);
-        u1.setName("Thomas");
+        u3.setId(id++);
+        u3.setName("Thomas");
+        allUsers.add(u3);
 
 
         User u4 = new User();
-        u1.setId(id++);
-        u1.setName("Louise");
+        u4.setId(id++);
+        u4.setName("Louise");
+        allUsers.add(u4);
+
     }
 
     private void createGroups() {
 
         g_admin_group_user.setPermissions(p_admin_group_user);
         g_admin_group_user.setName("Access Admin");
+        g_admin_group_user.setLatestAddedUser(allUsers.get(0));
+        g_admin_group_user.setUsers(allUsers);
         allGroups.add(g_admin_group_user);
     }
 
@@ -106,12 +112,8 @@ public class Database {
             ((SystemNodeImpl) node).setPermission(p);
 
             // Admin group for system Access
-            if (node.getDefinition() == Pages.Admin.class ||
-                    node.getDefinition() == Pages.Admin.User.CreateUser.class ||
-                    node.getDefinition() == Pages.Admin.Group.GroupSetup.class) {
                 p_admin_group_user.add(p);
 
-            }
         }
 
     }

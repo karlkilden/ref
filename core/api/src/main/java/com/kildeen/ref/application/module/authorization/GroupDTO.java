@@ -4,8 +4,10 @@ import com.kildeen.ref.application.module.fact.BaseAuditDTO;
 import com.kildeen.ref.domain.Permission;
 import com.kildeen.ref.domain.User;
 import org.apache.bval.constraints.NotEmpty;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,12 +29,16 @@ public class GroupDTO extends BaseAuditDTO {
 
     private List<User> users;
 
+    private List<String> userNames;
+
+    private String denormalizedUserNames;
+
+
     private User latestAddedUser;
 
-    public GroupDTO(final String name, final List<Permission> permissions, User latestAddedUser) {
+    public GroupDTO(final String name, final List<Permission> permissions) {
         this.permissions = permissions;
         this.name = name;
-        this.latestAddedUser = latestAddedUser;
     }
 
     public GroupDTO() {
@@ -71,4 +77,5 @@ public class GroupDTO extends BaseAuditDTO {
     public void setLatestAddedUser(User latestAddedUser) {
         this.latestAddedUser = latestAddedUser;
     }
+
 }

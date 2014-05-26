@@ -1,4 +1,4 @@
-package com.kildeen.ref;
+package com.kildeen.ref.context;
 
 import com.kildeen.ref.application.WebStartupEvent;
 import org.apache.deltaspike.core.api.provider.BeanProvider;

@@ -19,4 +19,13 @@ public class Util {
 
         return temp[0];
     }
+
+    public static Class<?> viewController(String clazz) {
+        try {
+            return Class.forName(clazz);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

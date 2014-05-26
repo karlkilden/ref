@@ -1,6 +1,7 @@
 package com.kildeen.ref.system;
 
 
+import org.apache.deltaspike.core.api.config.view.metadata.ConfigDescriptor;
 import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigResolver;
 
 import javax.annotation.PostConstruct;
@@ -25,12 +26,19 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
 public class SystemNodeResolverImpl implements SystemNodeResolver {
 
     private List<SystemNode> rootNodes;
-    private Map<String, Class<?>> nodeMap = new HashMap<>();
+    private Map<String, Class<?>> nodeClassMap = new HashMap<>();
 
     private List<SystemNode> nodes = new ArrayList<>();
 
+    private HashMap<String, SystemNode> nodeMap = new HashMap<>();
+
+
     @Inject
     private ViewConfigResolver viewConfigResolver;
+
+    @Inject
+    @Current
+    private List<Class<?>> rootClasses;
 
     @Inject
     private SystemNodeResolver systemNodeResolver;
@@ -41,8 +49,9 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
     private void init() {
         rootNodes = new ArrayList<>();
 
-        rootNodes.add(new SystemNodeImpl(Index.class, null));
-        rootNodes.add(new SystemNodeImpl(Pages.class, null));
+        for (Class<?> clazz : rootClasses) {
+            rootNodes.add(new SystemNodeImpl(clazz, null));
+        }
 
         for (SystemNode node : rootNodes) {
             mapNodes((SystemNodeImpl) node);
@@ -52,10 +61,12 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
     }
 
     private void mapNodes(final SystemNodeImpl node) {
-        if (viewConfigResolver.getConfigDescriptor(node.getDefinition()) != null) {
+        ConfigDescriptor<?> descriptor = viewConfigResolver.getConfigDescriptor(node.getDefinition());
+        if (descriptor != null) {
             navigationalNodes.add(node.getDefinition());
         }
-        nodeMap.put(node.getPermissionName(), node.getDefinition());
+        nodeClassMap.put(node.getPermissionName(), node.getDefinition());
+        nodeMap.put(descriptor.getPath(), node);
         nodes.add(node);
         for (SystemNode child : node.children()) {
             mapNodes((SystemNodeImpl) child);
@@ -69,7 +80,7 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
 
     @Override
     public Class<?> byId(final String permission) {
-        return nodeMap.get(permission);
+        return nodeClassMap.get(permission);
     }
 
     @Override
@@ -80,6 +91,11 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
     @Override
     public Set<Class<?>> getNavigationalNodes() {
         return navigationalNodes;
+    }
+
+    @Override
+    public SystemNode byPath(final String path) {
+        return nodeMap.get(path);
     }
 
 

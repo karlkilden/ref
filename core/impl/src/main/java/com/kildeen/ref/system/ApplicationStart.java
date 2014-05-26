@@ -38,7 +38,7 @@ public class ApplicationStart implements Serializable {
 
     private void bootInitiator(final Initiator... initiators) {
         for (Initiator initiator : initiators) {
-            log.info("{} is initiating");
+            log.info("{} is initiating", Util.getClassNameFromProxy(initiator.getClass(), true));
             initiator.boot();
 
         }

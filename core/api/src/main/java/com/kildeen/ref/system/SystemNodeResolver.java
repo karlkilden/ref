@@ -20,4 +20,8 @@ public interface SystemNodeResolver extends Serializable {
     Collection<SystemNode> nodes();
 
     Set<Class<?>> getNavigationalNodes();
+
+    SystemNode byPath(String path);
+
+
 }
