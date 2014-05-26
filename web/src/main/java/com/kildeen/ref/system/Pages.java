@@ -1,6 +1,6 @@
 package com.kildeen.ref.system;
 
-import com.kildeen.ref.permission.SetupGroupBean;
+import com.kildeen.ref.permission.GroupSetupBean;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
 import org.apache.deltaspike.core.api.config.view.controller.ViewControllerRef;
 import org.apache.deltaspike.jsf.api.config.view.View;
@@ -28,7 +28,7 @@ public interface Pages extends ViewConfig {
 
         public interface Group {
 
-            @ViewControllerRef(SetupGroupBean.class)
+            @ViewControllerRef(GroupSetupBean.class)
             @View(navigation = View.NavigationMode.REDIRECT)
             public class GroupSetup implements ViewConfig {
                 public class Delete {
@@ -36,7 +36,7 @@ public interface Pages extends ViewConfig {
                 }
             }
 
-            public class Groups implements ViewConfig {
+            public class GroupOverview implements ViewConfig {
             }
         }
 

@@ -110,4 +110,8 @@ public class GroupBean {
         event.fire(groupDTO);
         return GroupSetup.class;
     }
+
+    public String getOutcome() {
+        return Pages.Admin.Group.GroupSetup.class.toString();
+    }
 }

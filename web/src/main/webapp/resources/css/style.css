@@ -59,7 +59,6 @@ h3 {
 }
 
 .main-container {
-    overflow: auto;
     background-color: white;
     min-height: 600px;
     margin: 10px auto;
@@ -73,10 +72,28 @@ h3 {
 
 }
 
-.page-controls {
+.current-page-link {
+    color: #000000 !important;
+    text-decoration: underline;
+    font-size: 120% ;
+}
+
+.page-link {
+    color: #646464 !important;
+}
+
+.flow-controls {
     padding: 4px;
-    margin-bottom: 10px;
-    border-bottom: cadetblue double;
+    margin-bottom: 15px;
+
+    border-bottom:inset;
+}
+
+.page-controls {
+    margin-top: 25px;
+
+    border-bottom: aliceblue dotted;
+    padding-bottom: 4px;
 }
 
 .page-control {

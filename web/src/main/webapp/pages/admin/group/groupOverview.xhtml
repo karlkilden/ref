@@ -21,6 +21,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:o="http://omnifaces.org/ui"
                 template="/WEB-INF/template/template.xhtml">
 
     <ui:define name="content">
@@ -34,18 +35,19 @@
             .ui-inputfield {
                 padding-bottom: 6px;
             }
+
             .ui-filter-column, th.ui-state-default {
-                border:1px;
+                border: 1px;
                 border-color: gainsboro;
             }
         </style>
 
         <h:form id="groups-form">
 
-            <div class="page-controls">
+            <div class="flow-controls">
                 <p:commandButton action="#{groupBean.update}" value="Back" update="@all" styleClass="page-control"/>
-                <p:commandButton action="#{groupBean.update}" value="Edit" update="@all" styleClass="page-control"/>
-            </div>
+                <p:button outcome="#{groupBean.outcome}" value="New">
+                </p:button></div>
 
             <p:dataTable value="#{groupBean.groupDataModel}" var="group" style="width: 75%" id="selectGroupTable"
                          styleClass="one-col-table" selection="#{groupBean.selectedGroup}" selectionMode="single">
@@ -63,24 +65,25 @@
 
                 <p:column id="groupMembers" headerText="Members">
 
-                    <ui:repeat value="#{group.users}" var="user">
-                    <h:outputText value="#{user.name} "/>
+                    <ui:repeat value="#{group.users}" var="user" varStatus="status">
+                        <h:outputText value="#{user.name}#{!status.last ? ', ' : ''}"/>
                     </ui:repeat>
-                    
+
                 </p:column>
 
                 <p:column id="groupLatestMember" headerText="Last Added" style="width: 40px;">
                     <h:outputText value="#{group.latestAddedUser.name}"/>
                 </p:column>
 
-                <p:column id="groupEdit">
-                    <p:commandButton action="#{groupBean.edit(group)}" value="Edit"/>
+                <p:column id="groupEdit" style="width: 70px">
+                    <p:button outcome="#{groupBean.outcome}" value="Edit">
+                        <f:param name="groupId" value="#{group.id}"/>
+                    </p:button>
                 </p:column>
 
             </p:dataTable>
-            <p:messages/>
+            <p:messages showDetail="false"/>
         </h:form>
-
 
 
     </ui:define>

@@ -35,5 +35,6 @@ public interface SystemNode extends Serializable {
     String getPath();
     
     String getPage();
-        
+
+    SystemNode getParent();
 }

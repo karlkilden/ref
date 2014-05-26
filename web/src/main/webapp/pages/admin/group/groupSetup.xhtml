@@ -20,29 +20,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-                template="template.xhtml">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui"
+                template="/WEB-INF/template/template.xhtml" >
+
+    <f:metadata>
+        <f:viewParam name="groupId" value="#{groupSetupBean.groupId}">
+        </f:viewParam>
+    <f:viewAction action="#{groupSetupBean.init}" />
+    </f:metadata>
 
     <ui:define name="content">
 
         <h:form>
-            <div class="part-container">
 
-                <div style="float: right"><span class="label">Add permissions:</span>
-                    <p:tree value="#{setupGroupBean.root}" var="node" id="tree" selectionMode="checkbox"
+            <div class="flow-controls">
+            </div>
+
+            <div style="float: left; margin-right: 20px;"><p class="label">Name</p> <p:inputText value="#{groupSetupBean.groupDTO.name}"/></div>
+
+            <div style="overflow: hidden;"><p class="label">Add permissions:</p>
+                    <p:tree value="#{groupSetupBean.root}" var="node" id="tree" selectionMode="checkbox"
                             style="width: 500px;"
-                            propagateSelectionUp="false" selection="#{setupGroupBean.selectedPermissions}">
+                            propagateSelectionUp="false" selection="#{groupSetupBean.selectedPermissions}">
                         <p:treeNode id="treeNode">
                             <h:outputText value="#{node.name}" id="lblNode"/>
                         </p:treeNode>
                     </p:tree>
                 </div>
 
-                <div><p class="label">Name</p> <p:inputText value="#{setupGroupBean.groupDTO.name}"/></div>
-
+            <div class="page-controls">
+                <p:commandButton value="Save" action="#{groupSetupBean.saveGroup}" styleClass="page-control"/>
             </div>
-            <p:commandButton value="Create Group" action="#{setupGroupBean.createGroup}"/>
-
             <p:messages/>
         </h:form>
 

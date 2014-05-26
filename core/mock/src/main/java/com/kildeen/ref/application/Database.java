@@ -102,6 +102,7 @@ public class Database {
         g_admin_group_user.setName("Access Admin");
         g_admin_group_user.setLatestAddedUser(allUsers.get(0));
         g_admin_group_user.setUsers(allUsers);
+        g_admin_group_user.setId(444L);
         allGroups.add(g_admin_group_user);
     }
 

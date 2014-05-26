@@ -5,6 +5,7 @@ import com.kildeen.ref.application.module.authorization.GroupDTO;
 import com.kildeen.ref.application.module.authorization.GroupService;
 import com.kildeen.ref.domain.Permission;
 import com.kildeen.ref.system.Current;
+import com.kildeen.ref.system.Pages;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
 import org.apache.deltaspike.core.api.config.view.controller.PreRenderView;
@@ -15,7 +16,6 @@ import org.primefaces.model.TreeNode;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.event.Observes;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
  */
 @ViewAccessScoped
 @Named
-public class SetupGroupBean implements Serializable {
+public class GroupSetupBean implements Serializable {
 
     @Inject
     private SystemNodeResolver systemNodeResolver;
@@ -49,7 +49,6 @@ public class SetupGroupBean implements Serializable {
     @Current
     private Locale locale;
 
-
     private DefaultTreeNode root;
     private List<TreeNode> selectedPermissionsList = new ArrayList<>();
     private TreeNode[] selectedPermissions;
@@ -58,20 +57,18 @@ public class SetupGroupBean implements Serializable {
     private GroupDTO selectedGroup;
     private GroupDataModel groupDataModel;
     private boolean editSelected;
+    private long groupId;
 
 
-    @PostConstruct
-    private void init() {
-        fetchGroups();
-        groupDataModel = new GroupDataModel(groups);
+    public void init() {
+        groupDTO = groupService.fetchGroup(groupId);
+        if (groupDTO == null) {
+            groupDTO = new GroupDTO();
+        }
+        createPermissionTree();
     }
 
-    public void receiveGroupToEdit(@Observes GroupDTO dto) {
-        groupDTO = dto;
-    }
-
-    @PreRenderView()
-    protected void createPermissionTree() {
+    private void createPermissionTree() {
         root = new DefaultTreeNode("Root", null);
 
         for (SystemNode node : systemNodeResolver.root()) {
@@ -89,14 +86,18 @@ public class SetupGroupBean implements Serializable {
 
     private void addChildren(final SystemNode node, TreeNode parent, boolean customize) {
         TreeNode treeNode = new DefaultTreeNode(node.getPermission(), parent);
-        if (customize) {
-            for (Permission p : selectedGroup.getPermissions()) {
+        if (groupDTO.getId() != 0 && groupDTO.getPermissions() != null) {
+
+
+            for (Permission p : groupDTO.getPermissions()) {
                 if (p.getName().equals(node.getPermissionName())) {
-                    selectedPermissionsList.add(treeNode);
+                    treeNode.setSelected(true);
                     break;
                 }
             }
+
         }
+
         for (SystemNode child : node.children()) {
             addChildren(child, treeNode, customize);
         }
@@ -114,7 +115,7 @@ public class SetupGroupBean implements Serializable {
         this.selectedPermissionsList = selectedPermissionsList;
     }
 
-    public void createGroup() {
+    public void saveGroup() {
 
         List<Permission> permissions = new ArrayList<>(selectedPermissionsList.size());
         for (TreeNode node : selectedPermissions) {
@@ -178,5 +179,13 @@ public class SetupGroupBean implements Serializable {
 
     public void setSelectedPermissions(TreeNode[] selectedPermissions) {
         this.selectedPermissions = selectedPermissions;
+    }
+
+    public long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(final long groupId) {
+        this.groupId = groupId;
     }
 }

@@ -133,11 +133,18 @@ public class SystemNodeImpl implements SystemNode {
 		return page;
 	}
 
-	public void setupPath(String path) {
+    @Override
+	public SystemNode getParent() {
+                               return parent;
+    }
+
+    public void setupPath(String path) {
 		this.path = path;
 		
 		if (isBranch()) {
 			this.page = path.substring(path.lastIndexOf("/")+1);
 		}
 	}
+
+
 }
