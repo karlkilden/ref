@@ -83,7 +83,8 @@ public class NavigationBean implements Serializable {
                 addSubMenu(sm, child);
             } else if (child.isBranch()) {
                 DefaultMenuItem item = new DefaultMenuItem(bundleBean.getText(child));
-                item.setOutcome(child.getDefinition().toString());
+//                item.setOutcome(child.getDefinition().toString());
+                item.setCommand("#{navigationBean.navigate('"+child.getDefinition().toString()+"')}");
                 subMenu.addElement(item);
             }
         }
@@ -98,6 +99,11 @@ public class NavigationBean implements Serializable {
     }
     
     public Class<? extends ViewConfig> getNavigateDefault() {
-        return Groups.class;
+    	return Groups.class;
     }
+    
+    public String navigate(String outcome) {
+    	return outcome;
+    }
+
 }
