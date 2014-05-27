@@ -72,7 +72,8 @@ public class Database {
         User u1 = new User();
         u1.setId(id++);
         u1.setName("Gustaf");
-        u1.setGroupId(g_admin_group_user.getId());
+//        u1.setGroup(g_admin_group_user);
+        u1.setEmail("test@test.se");
 
         allUsers.add(u1);
 

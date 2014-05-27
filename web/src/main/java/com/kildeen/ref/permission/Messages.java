@@ -4,10 +4,11 @@ import org.apache.deltaspike.core.api.message.MessageBundle;
 import org.apache.deltaspike.core.api.message.MessageContextConfig;
 
 @MessageBundle
-@MessageContextConfig(messageSource = {"messages" })
+@MessageContextConfig(messageSource = {"messages"})
 public interface Messages
 
 {
-    String groupCreated(String groupName);
+    String entityCreated(String entity, String entityIdentifier);
 
 }
+

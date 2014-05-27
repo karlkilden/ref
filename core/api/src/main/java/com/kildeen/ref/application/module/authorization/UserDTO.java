@@ -1,4 +1,7 @@
-package com.kildeen.ref.domain;
+package com.kildeen.ref.application.module.authorization;
+
+import com.kildeen.ref.domain.BaseEntity;
+import com.kildeen.ref.domain.Group;
 
 import javax.persistence.*;
 
@@ -9,25 +12,18 @@ import javax.persistence.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Entity
-@Table(name = "ref_user")
-public class User extends BaseEntity {
 
-    @Column
+public class UserDTO extends BaseEntity {
+
     private String name;
 
-    @Column
-    @ManyToOne
-    @JoinColumn(name="id")
-    private Group group;
+    private GroupDTO group;
 
-    @Column
     private String locale;
 
-    @Column
     private String email;
 
-    public User() {
+    public UserDTO() {
     }
 
     public String getEmail() {
@@ -46,11 +42,11 @@ public class User extends BaseEntity {
         return name;
     }
 
-    public Group getGroup() {
+    public GroupDTO getGroup() {
         return group;
     }
 
-    public void setGroup(final Group group) {
+    public void setGroup(final GroupDTO group) {
         this.group = group;
     }
 
