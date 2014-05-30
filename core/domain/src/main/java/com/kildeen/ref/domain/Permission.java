@@ -1,8 +1,7 @@
 package com.kildeen.ref.domain;
 
-import org.apache.deltaspike.core.api.provider.BeanProvider;
-import org.apache.deltaspike.core.util.metadata.AnnotationInstanceProvider;
-import org.apache.deltaspike.data.api.audit.CurrentUser;
+import com.google.common.base.Objects;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,8 +21,7 @@ public class Permission extends BaseEntity {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @Column
+    @ManyToMany(fetch = FetchType.LAZY)
     List<Group> groups;
 
     public Permission(final Class<?> definition) {
@@ -41,5 +39,29 @@ public class Permission extends BaseEntity {
         return groups;
     }
 
+    @Override
+    public boolean equals(Object permission) {
+        Permission permission1 = (Permission) permission;
+        long id1 = permission1.getId();
+        long id = this.getId();
+
+        if (id == id1 && id != 0) {
+            return true;
+        }
+
+        return this.name.equals(permission1.getName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        if (getId() ==0 && name == null) {
+            // Can't hashcode yet
+            return  super.hashCode();
+        }
+
+        return Objects.hashCode(name, getId());
+
+    }
 
 }

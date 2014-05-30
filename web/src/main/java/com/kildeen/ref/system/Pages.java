@@ -10,8 +10,18 @@ import org.apache.deltaspike.jsf.api.config.view.View;
  * @author: Karl Kildén
  * @since 1.0
  */
-public interface Pages extends ViewConfig {
+public interface Pages extends ViewConfig, SecuredPages {
 
+    public interface Content extends ViewConfig {
+
+        public class FactSetup implements ViewConfig {
+
+        }
+
+        public class FactOverview implements ViewConfig {
+
+        }
+    }
 
     public interface Admin extends ViewConfig {
 

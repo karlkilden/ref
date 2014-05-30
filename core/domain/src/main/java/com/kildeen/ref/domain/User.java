@@ -11,14 +11,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ref_user")
-public class User extends BaseEntity {
+public class User extends BaseAuditEntity {
 
     @Column
     private String name;
 
     @Column
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="group_id")
     private Group group;
 
     @Column

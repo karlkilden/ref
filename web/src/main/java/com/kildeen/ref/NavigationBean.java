@@ -1,13 +1,9 @@
 package com.kildeen.ref;
 
-import com.kildeen.ref.system.Pages;
-import com.kildeen.ref.system.SystemNode;
-import com.kildeen.ref.system.SystemNodeResolver;
+import com.kildeen.ref.module.authorization.GroupDTO;
+import com.kildeen.ref.system.*;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.DefaultSubMenu;
-import org.primefaces.model.menu.MenuModel;
+import org.primefaces.model.menu.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+
+import static com.kildeen.ref.system.Pages.Content.FactOverview;
 
 /**
  * <p>File created: 2014-05-11 20:25</p>
@@ -32,7 +30,8 @@ public class NavigationBean implements Serializable {
     private SystemNodeResolver systemNodeResolver;
 
     @Inject
-    FacesContext facesContext;
+    @Current
+    GroupDTO groupDTO;
 
     private MenuModel model = new DefaultMenuModel();
 
@@ -48,11 +47,13 @@ public class NavigationBean implements Serializable {
             }
 
         }
-
+        DefaultMenuItem item = new DefaultMenuItem("Logout");
+        item.setOutcome(Index.class.toString());
+        model.addElement(item);
     }
 
     private void addNode(final MenuModel model, final SystemNode node) {
-        if (systemNodeResolver.getNavigationalNodes().contains(node.getDefinition())) {
+        if (systemNodeResolver.getNavigationalNodes().contains(node.getDefinition()) && groupDTO.getPermissionSet().contains(node.getPermission())) {
             if (node.isStem()) {
                 DefaultSubMenu subMenu = new DefaultSubMenu(bundleBean.getText(node));
                 model.addElement(subMenu);
@@ -69,6 +70,9 @@ public class NavigationBean implements Serializable {
 
     private void addSubMenu(final DefaultSubMenu subMenu, final SystemNode node) {
         for (SystemNode child : node.children()) {
+            if (!groupDTO.getPermissionSet().contains(node.getPermission())) {
+                continue;
+            }
             if (child.isStem()) {
                 DefaultSubMenu sm = new DefaultSubMenu(bundleBean.getText(child));
                 subMenu.addElement(sm);
@@ -91,7 +95,7 @@ public class NavigationBean implements Serializable {
     }
     
     public Class<? extends ViewConfig> getNavigateDefault() {
-    	return Pages.Admin.Group.GroupOverview.class;
+    	return FactOverview.class;
     }
     
     public String navigate(String outcome) {

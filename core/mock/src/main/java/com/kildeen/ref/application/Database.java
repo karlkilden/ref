@@ -1,9 +1,9 @@
 package com.kildeen.ref.application;
 
-import com.kildeen.ref.application.module.authorization.GroupDTO;
-import com.kildeen.ref.application.module.fact.FactDTO;
+import com.kildeen.ref.module.authorization.GroupDTO;
+import com.kildeen.ref.module.authorization.UserDTO;
+import com.kildeen.ref.module.fact.FactDTO;
 import com.kildeen.ref.domain.Permission;
-import com.kildeen.ref.domain.User;
 import com.kildeen.ref.system.*;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +27,7 @@ public class Database {
     private GroupDTO g_admin_group_user = new GroupDTO();
     private List<GroupDTO> allGroups = new ArrayList<>();
     int id = 0;
-    private ArrayList<User> allUsers = new ArrayList<>();
+    private ArrayList<UserDTO> allUsers = new ArrayList<>();
     private List<FactDTO> allFacts = new ArrayList<>();
 
     @Inject
@@ -69,7 +69,7 @@ public class Database {
     }
 
     private void createUsers() {
-        User u1 = new User();
+        UserDTO u1 = new UserDTO();
         u1.setId(id++);
         u1.setName("Gustaf");
 //        u1.setGroup(g_admin_group_user);
@@ -78,19 +78,19 @@ public class Database {
         allUsers.add(u1);
 
 
-        User u2 = new User();
+        UserDTO u2 = new UserDTO();
         u2.setId(id++);
         u2.setName("Ann");
         allUsers.add(u2);
 
 
-        User u3 = new User();
+        UserDTO u3 = new UserDTO();
         u3.setId(id++);
         u3.setName("Thomas");
         allUsers.add(u3);
 
 
-        User u4 = new User();
+        UserDTO u4 = new UserDTO();
         u4.setId(id++);
         u4.setName("Louise");
         allUsers.add(u4);
@@ -141,7 +141,7 @@ public class Database {
         return id;
     }
 
-    public ArrayList<User> getAllUsers() {
+    public ArrayList<UserDTO> getAllUsers() {
         return allUsers;
     }
 

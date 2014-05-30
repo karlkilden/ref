@@ -21,16 +21,46 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template/template.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                template="/WEB-INF/template/template.xhtml">
 
-    <f:metadata>
-        <f:viewAction action="#{navigationBean.getNavigateDefault()}"/>
-    </f:metadata>
+    <ui:define name="header-navigation">
+
+    </ui:define>
+
+    <ui:define name="header-quick-navigation">
+    </ui:define>
+
+    <ui:define name="page-title">
+        <ui:fragment rendered="#{userContext.initialized()== false}">
+            <h1> Welcome!</h1>
+        </ui:fragment>
+    </ui:define>
+
 
     <ui:define name="content">
+        <ui:fragment rendered="#{userContext.initialized() == false}">
+            <h2>Please login below:
+            </h2>
+            <h:form>
+
+                <div><p class="label">Name</p> <p:inputText
+                        value="#{loginBean.name}"/></div>
 
 
+                <div class="page-controls" style="margin-top: 20px;">
+                    <p:commandButton value="Login" action="#{loginBean.login()}" styleClass="page-control"/>
+                </div>
 
+            </h:form>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{userContext.initialized()}">
+            <p:link value="View facts!" outcome="#{navigationBean.navigateDefault.toString()}" style="font-size: 300%"/>
+            <h:form>
+                <h2>You are logged in as: </h2>
+               <p style="margin-bottom: 5px; font-size: 134%;"> #{userContext.user.name}</p>
+                <p:commandButton value="Logout" action="#{loginBean.logout}"/>
+            </h:form>
+        </ui:fragment>
     </ui:define>
 </ui:composition>

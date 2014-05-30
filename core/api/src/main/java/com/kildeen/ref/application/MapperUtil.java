@@ -1,9 +1,11 @@
 package com.kildeen.ref.application;
 
-import com.kildeen.ref.application.module.fact.BaseAuditDTO;
-import com.kildeen.ref.application.module.fact.BaseDTO;
+import com.kildeen.ref.module.fact.BaseAuditDTO;
+import com.kildeen.ref.module.fact.BaseDTO;
 import com.kildeen.ref.domain.BaseAuditEntity;
 import com.kildeen.ref.domain.BaseEntity;
+
+import javax.persistence.OptimisticLockException;
 
 /**
  * <p>File created: 2014-05-03 11:28</p>
@@ -19,11 +21,11 @@ public class MapperUtil {
         if (dto.getId() == 0) {
             return;
         }
-        entity.setId(dto.getId());
-        if (dto.getVersion() != entity.getVersion()) {
-            entity.setVersion(dto.getVersion());
-
+        if (dto.getVersion()< entity.getVersion()) {
+            throw new RollBackException(entity, new OptimisticLockException());
         }
+        entity.setId(dto.getId());
+
     }
 
     public static void toAuditEntity(BaseAuditEntity entity, BaseAuditDTO dto) {

@@ -17,10 +17,10 @@ public class Group extends BaseAuditEntity {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group")
     private List<User> users;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> permissions;
 
     @OneToOne

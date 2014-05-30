@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:o="http://omnifaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="content">
+        <style>
+            .ui-datatable .ui-column-filter {
+                display: inline;
+                float: left;
+                vertical-align: bottom;
+            }
+
+            .ui-inputfield {
+                padding-bottom: 6px;
+            }
+
+            .ui-filter-column, th.ui-state-default {
+                border: 1px;
+                border-color: gainsboro;
+            }
+        </style>
+
+        <h:form id="facts-form" style="width: 400px;">
+
+            <div class="flow-controls">
+                <p:commandButton action="#{factBean.update}" value="Back" update="@all" styleClass="page-control"/>
+                <p:button outcome="#{factBean.outcome}" value="New">
+                </p:button></div>
+
+            <p:dataScroller value="#{factBean.lazyFactDTODataModel}" var="fact" id="selectFactTable" lazy="true" chunkSize="20" mode="inline">
+
+                <f:facet name="header">Facts</f:facet>
+
+                <div style="border-bottom:rgba(173, 114, 255, 0.20) dashed; margin: 10px 0px 10px 0px; padding: 2px">
+                    <h:outputText value="#{fact.name}" />
+
+
+                </div>
+                <div style="width: 50%; font-size: 200%">
+                    <h:outputText value="#{fact.content}"/>
+
+                </div>
+
+
+                <f:facet name="loader">
+                    <p:commandButton type="button" value="View More" />
+                </f:facet>
+            </p:dataScroller>
+            <p:messages showDetail="false"/>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>

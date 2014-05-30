@@ -21,7 +21,7 @@
     <ds:windowId/>
 
     <p style="visibility: hidden" id="media-setter" class="set-media"/>
-    <p:growl id="main-growl" widgetVar="growl" showDetail="true" sticky="true" autoUpdate="true"/>
+    <p:growl id="main-growl" widgetVar="growl" showDetail="false" sticky="true" autoUpdate="true"/>
     <o:cache scope="session" time="1">
         <div id="header">
             <div id="b-container-siteHeader" class="ui-widget-header b-container-siteHeader">
@@ -29,19 +29,32 @@
 
                 </div>
                 <div class="wrapper">
-                    <p:menubar autoDisplay="false" model="#{navigationBean.model}" style="margin-bottom: 15px"/>
-
+                    <ui:insert name="header-navigation">
+                        <p:menubar autoDisplay="false" model="#{navigationBean.model}" style="margin-bottom: 15px"/>
+                    </ui:insert>
 
                 </div>
-                <header class="wrapper clearfix">
-                        <ui:repeat value="#{pageContext.nodes}" var="node">
-                            <h:link value="#{bundleBean.getText(node.permissionName)}" outcome="#{node.definition.toString()}" style="margin-right: 10px" styleClass="#{pageContext.systemNode == node ? 'current-page-link' : 'page-link'}"/>
-                        </ui:repeat>
-                                 <div style="padding-bottom: 10px">
 
-                                 </div>
-                    <h1 class="b-text-siteHeader title"
-                        id="b-text-siteHeader">Ref</h1>
+                <header class="wrapper clearfix">
+
+                    <div>
+                        <ui:insert name="header-quick-navigation">
+                            <ui:repeat value="#{pageContext.nodes}" var="node">
+                                <h:link value="#{bundleBean.getText(node.permissionName)}"
+                                        outcome="#{node.definition.toString()}" style="margin-right: 10px"
+                                        styleClass="#{pageContext.systemNode == node ? 'current-page-link' : 'page-link'}"/>
+                            </ui:repeat>
+                        </ui:insert>
+                    </div>
+
+                    <div style="padding-bottom: 10px; text-align: center; vertical-align: text-top">
+
+                        <h1 class="site-header"
+                            id="siteheader">Random Facts!</h1>
+                    </div>
+
+
+
 
                     <div style="margin-top: 10px">
                         <p:ajaxStatus id="ajaxStatusPanel">
@@ -81,10 +94,27 @@
             <div class="sublink-container" id="sublinks">
 
             </div>
-            <h1>#{pageContext.pageHeader}</h1>
+            <ui:insert name="page-title">
+                <h1>#{pageContext.pageHeader}</h1>
+            </ui:insert>
             <ui:insert name="content">
 
             </ui:insert>
+            <p:messages globalOnly="true" autoUpdate="true" style="width: 500px; float: left"/>
+
+            <h:panelGroup id="displayError">
+
+                <p:dialog id="exceptionDialog" header="Exception: #{pageContext.exceptionInfo.type} occured."
+                          widgetVar="exceptionDialog" height="500px">
+                    Message: #{pageContext.exceptionInfo.message} <br/>
+                    StackTrace: <h:outputText value="#{pageContext.exceptionInfo.formattedStackTrace}"
+                                              escape="false"/>
+                </p:dialog>
+                <p:button onclick="PF('exceptionDialog').show(); return false;" value="Show error details"
+                          rendered="#{pageContext.exceptionInfo != null}"
+                          style="right: 15%; display: inline-block; margin-top: 13px"/>
+            </h:panelGroup>
+
         </div>
         <!-- 	<div class="floater"></div> -->
         <div class="ui-widget-header">

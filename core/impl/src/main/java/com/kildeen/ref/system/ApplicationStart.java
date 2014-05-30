@@ -1,14 +1,11 @@
 package com.kildeen.ref.system;
 
-import com.kildeen.ref.application.module.authorization.PermissionResolverImpl;
 import com.kildeen.ref.security.PermissionResolver;
 import org.slf4j.Logger;
 
 
 import javax.annotation.PostConstruct;
-import javax.ejb.ConcurrencyManagement;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import javax.inject.Inject;
 import java.io.Serializable;
 
@@ -23,6 +20,7 @@ import static javax.ejb.ConcurrencyManagementType.BEAN;
  */
 @Singleton
 @ConcurrencyManagement(BEAN)
+@TransactionManagement(TransactionManagementType.BEAN)
 @Startup
 public class ApplicationStart implements Serializable {
 
@@ -30,10 +28,12 @@ public class ApplicationStart implements Serializable {
     @Inject
     private PermissionResolver permissionResolver;
 
+    @Inject
+    private BasicSetupHandler basicSetupHandler;
 
     @PostConstruct
     private void boot() {
-        bootInitiator(permissionResolver);
+        bootInitiator(permissionResolver, basicSetupHandler);
     }
 
     private void bootInitiator(final Initiator... initiators) {

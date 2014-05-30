@@ -1,9 +1,6 @@
 package com.kildeen.ref;
 
-import com.kildeen.ref.application.module.fact.EagerManagerTest;
-import com.kildeen.ref.application.module.fact.FactServiceMockTest;
-import com.kildeen.ref.application.module.fact.FactServiceTest;
-import com.kildeen.ref.system.LeafTest;
+import com.kildeen.ref.module.fact.FactServiceMockTest;
 import com.kildeen.ref.system.SystemNodeTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

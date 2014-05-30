@@ -17,7 +17,7 @@ public class Fact extends BaseAuditEntity {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<WordOccurrence> wordOccurrences = new ArrayList<>();
 
     public Fact(final String name) {

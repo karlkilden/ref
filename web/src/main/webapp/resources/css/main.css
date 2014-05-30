@@ -223,10 +223,6 @@ nav a:hover {
         WIDE: Menu
        ============ */
 
-    .title {
-        float: left;
-    }
-
     nav {
         float: right;
         width: 38%;
