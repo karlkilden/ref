@@ -38,15 +38,9 @@ public class GroupBean {
     @Current
     private Locale locale;
 
-    @Inject
-    Event<GroupDTO> event;
-
-    private GroupDTO groupDTO = new GroupDTO();
     private List<GroupDTO> groups;
     private GroupDTO selectedGroup;
     private GroupDataModel groupDataModel;
-    private boolean editSelected;
-
 
     @PostConstruct
     private void init() {

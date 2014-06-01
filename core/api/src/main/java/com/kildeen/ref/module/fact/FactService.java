@@ -22,4 +22,6 @@ public interface FactService {
     QueryResult<FactDTO> fetchAllResult();
 
     List<FactDTO> fetchAll();
+
+    FactDTO fetchLatestFact();
 }

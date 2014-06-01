@@ -20,4 +20,6 @@ public interface FactRepository extends EntityRepository<FactDTO, Long> {
     @Query("select fact from Fact fact")
     QueryResult<FactDTO> fetchAll();
 
+    @Query(value="select f from Fact f order by f.id desc", max = 1)
+    FactDTO findLatestFact();
 }

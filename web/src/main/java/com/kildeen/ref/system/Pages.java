@@ -3,6 +3,8 @@ package com.kildeen.ref.system;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
 import org.apache.deltaspike.jsf.api.config.view.View;
 
+import javax.inject.Named;
+
 /**
  * <p>File created: 2014-04-30 22:01</p>
  *
@@ -21,6 +23,8 @@ public interface Pages extends ViewConfig, SecuredPages {
         public class FactOverview implements ViewConfig {
 
         }
+
+        public class LatestFact implements ViewConfig {}
     }
 
     public interface Admin extends ViewConfig {

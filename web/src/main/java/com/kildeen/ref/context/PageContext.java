@@ -4,10 +4,12 @@ import com.kildeen.ref.BundleBean;
 import com.kildeen.ref.domain.BaseEntity;
 import com.kildeen.ref.security.PermissionResolver;
 import com.kildeen.ref.system.Current;
+import com.kildeen.ref.system.LogManager;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
 import org.apache.deltaspike.core.api.config.view.navigation.event.PreViewConfigNavigateEvent;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
+import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.event.Observes;
@@ -31,6 +33,8 @@ import java.util.List;
 @ViewScoped
 @Named
 public class PageContext implements Serializable {
+
+    private static final Logger log = LogManager.getLogger();
 
     @Inject
     private SystemNodeResolver systemNodeResolver;
@@ -58,6 +62,7 @@ public class PageContext implements Serializable {
         if (systemNode == null) {
             throw new RuntimeException(preViewConfigNavigateEvent.getToView().getName() + " Not found as node");
         }
+        log.info("new page: {}", systemNode.getPage());
     }
 
     @Produces

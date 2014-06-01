@@ -160,6 +160,37 @@
             <version>4.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jbatch_1.0_spec</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope> <!-- this JSR spec API is not yet provided in our EE6 containers -->
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.batchee</groupId>-->
+            <!--<artifactId>batchee-jbatch</artifactId>-->
+            <!--<version>${batchee.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.batchee</groupId>-->
+            <!--<artifactId>batchee-extras</artifactId>-->
+            <!--<version>${batchee.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.batchee</groupId>-->
+            <!--<artifactId>batchee-jsefa</artifactId>-->
+            <!--<version>${batchee.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.batchee</groupId>-->
+            <!--<artifactId>batchee-cdi</artifactId>-->
+            <!--<version>${batchee.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.batchee</groupId>-->
+            <!--<artifactId>batchee-ee6</artifactId>-->
+            <!--<version>${batchee.version}</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 </project>

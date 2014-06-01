@@ -27,9 +27,6 @@ public class GroupServiceImpl implements GroupService {
     @Inject
     private GroupRepository groupRepository;
 
-    @Inject
-    private SystemNodeResolver systemNodeResolver;
-
     @Override
     public List<GroupDTO> fetchAll() {
         return groupRepository.findAll();

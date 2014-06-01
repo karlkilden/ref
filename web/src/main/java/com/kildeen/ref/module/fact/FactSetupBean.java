@@ -54,6 +54,12 @@ public class FactSetupBean implements Serializable {
         }
     }
 
+
+    public void init2() {
+        factDTO = factService.fetchLatestFact();
+    }
+
+
     public void saveFact() {
 
         factService.save(factDTO);
@@ -61,6 +67,8 @@ public class FactSetupBean implements Serializable {
         msg.addInfo().entityCreated(Fact.class.getSimpleName(), factDTO.getName());
 
     }
+
+
 
     public FactDTO getFactDTO() {
         return factDTO;
@@ -77,4 +85,6 @@ public class FactSetupBean implements Serializable {
     public void setFactId(final long factId) {
         this.factId = factId;
     }
+
+
 }

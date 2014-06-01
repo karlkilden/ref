@@ -71,5 +71,9 @@ public class FactServiceImpl implements FactService {
         return factRepository.findAll();
     }
 
+    @Override
+    public FactDTO fetchLatestFact() {
+        return factRepository.findLatestFact();
+    }
 
 }

@@ -78,5 +78,10 @@ public class FactServiceMock implements FactService {
         return database.getAllFacts();
     }
 
+    @Override
+    public FactDTO fetchLatestFact() {
+        return null;
+    }
+
 
 }

@@ -15,7 +15,6 @@ import javax.inject.Inject;
  * @author: Karl Kildén
  * @since 1.0
  */
-@Singleton
 public class FactMocker {
 
     @Inject

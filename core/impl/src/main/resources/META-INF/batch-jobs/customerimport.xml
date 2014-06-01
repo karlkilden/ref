@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="customerimport" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <step id="import">
+        <chunk>
+            <reader ref="flatFileItemReader"/>
+            <processor ref="customerImportItemProcessor" />
+            <writer ref="factImportItemWriter" />
+        </chunk>
+    </step>
+</job>

@@ -180,6 +180,7 @@
                         <lib>${database.driver}</lib>
                         <lib>remove:myfaces-api-${tomee.remove.myfaces.version}</lib>
                         <lib>remove:myfaces-impl-${tomee.remove.myfaces.version}</lib>
+                        <lib>org.apache.commons:commons-collections4:4.0</lib>
                         <lib>org.apache.myfaces.core:myfaces-api:${myfaces.version}</lib>
                         <lib>org.apache.myfaces.core:myfaces-impl:${myfaces.version}</lib>
                     </libs>
