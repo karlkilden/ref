@@ -14,10 +14,17 @@ The made up customer specification it implements reads like this:
 
 ###Customer specification
 
-The system is your typical "Did you know?" random facts generator.
+The system is your typical "Did you know?" random facts app.
 
-Full CRUD for facts
+Full CRUD for facts (done)
 Faul language controls
 upvote and downvote system
 
+
+Typical fact:
+
+
+Did you know?
+
+TomEE 1.6 works with any JPA vendor
 
