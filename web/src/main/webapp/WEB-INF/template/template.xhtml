@@ -40,7 +40,7 @@
                     <div>
                         <ui:insert name="header-quick-navigation">
                             <ui:repeat value="#{pageContext.nodes}" var="node">
-                                <h:link value="#{bundleBean.getText(node.permissionName)}"
+                                <h:link value="#{bundleBean.getText(node.nodeName)}"
                                         outcome="#{node.definition.toString()}" style="margin-right: 10px"
                                         styleClass="#{pageContext.systemNode == node ? 'current-page-link' : 'page-link'}"/>
                             </ui:repeat>

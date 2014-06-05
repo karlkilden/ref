@@ -17,15 +17,17 @@ import org.apache.deltaspike.core.api.config.view.ViewConfig;
 public interface SystemNodeResolver extends Serializable {
     List<SystemNode> root();
 
-    Class<? extends ViewConfig> byId(String permission);
+    Class<? extends ViewConfig> getDefinitionByName(String permission);
 
     Collection<SystemNode> nodes();
 
     Set<Class<?>> getNavigationalNodes();
 
-    SystemNode byPath(String path);
+    SystemNode getByPath(String path);
 
-	SystemNode byDefinition(Class<? extends ViewConfig> toView);
+	SystemNode getByDefinition(Class<? extends ViewConfig> toView);
+
+    SystemNode getByNodeName(String nodeName);
 
 
 }

@@ -14,6 +14,9 @@ public interface TestPages extends ViewConfig {
     public interface Admin extends ViewConfig {
 
         public class CreateUser implements ViewConfig {
+            public class Delete {
+
+            }
         }
     }
 

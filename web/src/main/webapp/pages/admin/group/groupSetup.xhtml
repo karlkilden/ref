@@ -45,7 +45,7 @@ xmlns:o="http://omnifaces.org/ui"
                             style="width: 500px;"
                             propagateSelectionUp="false" selection="#{groupSetupBean.selectedPermissions}">
                         <p:treeNode id="treeNode">
-                            <h:outputText value="#{node.name}" id="lblNode"/>
+                            <h:outputText value="#{bundleBean.getText(node.name)}" id="lblNode"/>
                         </p:treeNode>
                     </p:tree>
                 </div>

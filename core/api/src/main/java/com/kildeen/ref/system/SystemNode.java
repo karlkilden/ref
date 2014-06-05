@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface SystemNode extends Serializable {
 
-    String getPermissionName(Class<?> definition);
+    String getNodeName(Class<?> definition);
 
     boolean isRoot();
 
@@ -26,7 +26,7 @@ public interface SystemNode extends Serializable {
 
     List<SystemNode> children();
 
-    String getPermissionName();
+    String getNodeName();
 
     Class<?> getDefinition();
 

@@ -20,12 +20,14 @@
     <alternatives>
         <class>com.kildeen.ref.module.authorization.GroupServiceMock</class>
         <class>com.kildeen.ref.module.authorization.UserServiceMock</class>
+        <class>com.kildeen.ref.module.fact.FactServiceMock</class>
 
         <class>com.kildeen.ref.module.fact.WordServiceMock</class>
         <class>com.kildeen.ref.security.PermissionResolverMock</class>
         <class>com.kildeen.ref.UserContextMock</class>
         <class>com.kildeen.ref.api.EntityManagerMock</class>
         <class>com.kildeen.ref.module.authorization.PermissionServiceMock</class>
+        <class>com.kildeen.ref.application.BasicSetupHandlerMock</class>
     </alternatives>
 
 

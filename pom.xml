@@ -24,6 +24,8 @@
         <openjpa.version>2.3.0</openjpa.version>
         <log4j2.version>2.0-rc1</log4j2.version>
         <tomee.version>1.6.0.2</tomee.version>
+
+        <omnifaces.version>1.8</omnifaces.version>
         <batchee.version>0.2-incubating-SNAPSHOT</batchee.version>
 
         <!-- Boilerplate -->

@@ -23,13 +23,14 @@ import java.util.List;
 @ApplicationScoped
 public class Database {
 
-    private List<Permission> p_admin_group_user = new ArrayList<>();
-    private GroupDTO g_admin_group_user = new GroupDTO();
+    private List<Permission> allPermissions = new ArrayList<>();
+    private GroupDTO superGroup = new GroupDTO();
     private List<GroupDTO> allGroups = new ArrayList<>();
     int id = 0;
     private ArrayList<UserDTO> allUsers = new ArrayList<>();
-    private List<FactDTO> allFacts = new ArrayList<>();
+    private UserDTO superUser;
 
+    private List<FactDTO> allFacts = new ArrayList<>();
     @Inject
     private SystemNodeResolver systemNodeResolver;
 
@@ -72,9 +73,9 @@ public class Database {
         UserDTO u1 = new UserDTO();
         u1.setId(id++);
         u1.setName("Gustaf");
-//        u1.setGroup(g_admin_group_user);
         u1.setEmail("test@test.se");
-
+        u1.setGroup(superGroup);
+        superUser= u1;
         allUsers.add(u1);
 
 
@@ -99,12 +100,12 @@ public class Database {
 
     private void createGroups() {
 
-        g_admin_group_user.setPermissions(p_admin_group_user);
-        g_admin_group_user.setName("Access Admin");
-        g_admin_group_user.setLatestAddedUser(allUsers.get(0));
-        g_admin_group_user.setUsers(allUsers);
-        g_admin_group_user.setId(444L);
-        allGroups.add(g_admin_group_user);
+        superGroup.setPermissions(allPermissions);
+        superGroup.setName("Access Admin");
+        superGroup.setLatestAddedUser(allUsers.get(0));
+        superGroup.setUsers(allUsers);
+        superGroup.setId(444L);
+        allGroups.add(superGroup);
     }
 
     private void createPermissions() {
@@ -114,18 +115,18 @@ public class Database {
             ((SystemNodeImpl) node).setPermission(p);
 
             // Admin group for system Access
-                p_admin_group_user.add(p);
+                allPermissions.add(p);
 
         }
 
     }
 
-    public List<Permission> getP_admin_group_user() {
-        return p_admin_group_user;
+    public List<Permission> getAllPermissions() {
+        return allPermissions;
     }
 
-    public GroupDTO getG_admin_group_user() {
-        return g_admin_group_user;
+    public GroupDTO getSuperGroup() {
+        return superGroup;
     }
 
     public List<GroupDTO> getAllGroups() {
@@ -149,4 +150,7 @@ public class Database {
         return allFacts;
     }
 
+    public UserDTO getSuperUser() {
+        return superUser;
+    }
 }

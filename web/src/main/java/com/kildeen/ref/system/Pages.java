@@ -44,9 +44,6 @@ public interface Pages extends ViewConfig, SecuredPages {
 
             @View(navigation = View.NavigationMode.REDIRECT)
             public class GroupSetup implements ViewConfig {
-                public class Delete {
-
-                }
             }
 
             public class GroupOverview implements ViewConfig {

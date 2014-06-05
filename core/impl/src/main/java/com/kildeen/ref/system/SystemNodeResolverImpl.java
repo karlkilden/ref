@@ -30,9 +30,10 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
 
 	private List<SystemNode> rootNodes;
 
-	private Map<String, Class<? extends ViewConfig>> nodeIdToDefinition = new HashMap<>();
+	private Map<String, Class<? extends ViewConfig>> nodeNameToDefinition = new HashMap<>();
 
-	private HashMap<String, SystemNode> nodeIdToNode = new HashMap<>();
+	private HashMap<String, SystemNode> nodePathToNode = new HashMap<>();
+	private HashMap<String, SystemNode> nodeNameToNode = new HashMap<>();
 	private HashMap<Class<? extends ViewConfig>, SystemNode> nodeDefinitionToNode = new HashMap<>();
 
 	private List<SystemNode> nodes = new ArrayList<>();
@@ -63,20 +64,20 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
 	private void mapNodes(final SystemNodeImpl node) {
 		ConfigDescriptor<?> descriptor = viewConfigResolver
 				.getConfigDescriptor(node.getDefinition());
-	if (descriptor == null) {
-		return;
-	}
-		node.setupPath(descriptor.getPath());
-		if (descriptor != null) {
-			navigationalNodes.add(node.getDefinition());
-		}
-		if (!node.isLeaf()) {
+
+        if (descriptor != null) {
+            node.setupPath(descriptor.getPath());
+            navigationalNodes.add(node.getDefinition());
+
+        }
+        if (!node.isLeaf()) {
 			
-			nodeIdToDefinition.put(node.getPermissionName(), (Class<? extends ViewConfig>) node.getDefinition());
-			nodeIdToNode.put(descriptor.getPath(), node);
+			nodeNameToDefinition.put(node.getNodeName(), (Class<? extends ViewConfig>) node.getDefinition());
+			nodePathToNode.put(descriptor.getPath(), node);
 			nodeDefinitionToNode.put((Class<? extends ViewConfig>) node.getDefinition(), node);
 		}
-		nodes.add(node);
+        nodeNameToNode.put(node.getNodeName(), node);
+        nodes.add(node);
 
 		for (SystemNode child : node.children()) {
 			mapNodes((SystemNodeImpl) child);
@@ -89,8 +90,8 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
 	}
 
 	@Override
-	public Class<? extends ViewConfig> byId(final String permission) {
-		return nodeIdToDefinition.get(permission);
+	public Class<? extends ViewConfig> getDefinitionByName(final String permission) {
+		return nodeNameToDefinition.get(permission);
 	}
 
 	@Override
@@ -104,13 +105,18 @@ public class SystemNodeResolverImpl implements SystemNodeResolver {
 	}
 
 	@Override
-	public SystemNode byPath(final String path) {
-		return nodeIdToNode.get(path);
+	public SystemNode getByPath(final String path) {
+		return nodePathToNode.get(path);
 	}
 
 	@Override
-	public SystemNode byDefinition(Class<? extends ViewConfig> toView) {
+	public SystemNode getByDefinition(Class<? extends ViewConfig> toView) {
 		return nodeDefinitionToNode.get(toView);
 	}
+
+    @Override
+    public SystemNode getByNodeName(String nodeName) {
+                  return nodeNameToNode.get(nodeName);
+    }
 
 }

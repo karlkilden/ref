@@ -15,7 +15,6 @@
 
     <properties>
         <primefaces.version>5.0</primefaces.version>
-        <omnifaces.version>1.7</omnifaces.version>
         <primefaces.themes.version>1.0.10</primefaces.themes.version>
 
         <!-- TomEE setup -->
@@ -42,7 +41,7 @@
 
         <dependency>
             <groupId>com.kildeen.ref</groupId>
-            <artifactId>ref-core-impl</artifactId>
+            <artifactId>ref-core-mock</artifactId>
             <scope>runtime</scope>
         </dependency>
 

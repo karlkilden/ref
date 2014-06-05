@@ -70,7 +70,7 @@ public class GroupSetupBean implements Serializable {
         TreeNode treeNode = new DefaultTreeNode(node.getPermission(), parent);
         if (groupDTO.getId() != 0 && groupDTO.getPermissions() != null) {
             for (Permission p : groupDTO.getPermissions()) {
-                if (p.getName().equals(node.getPermissionName())) {
+                if (p.getName().equals(node.getNodeName())) {
                     treeNode.setSelected(true);
                     break;
                 }

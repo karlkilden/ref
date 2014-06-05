@@ -1,5 +1,6 @@
 package com.kildeen.ref;
 
+import com.kildeen.ref.domain.BaseEntityTest;
 import com.kildeen.ref.module.fact.FactServiceMockTest;
 import com.kildeen.ref.system.SystemNodeTest;
 import org.junit.runner.RunWith;
@@ -13,12 +14,13 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         FactServiceMockTest.class,
-        SystemNodeTest.class
+        SystemNodeTest.class,
+        BaseEntityTest.class
 })
 
 /**
  *
- * All suit that uses standard junit only with fast additions such as Mockito should be added to this suit if possible.
+ * All tests that uses standard junit only with fast additions such as Mockito should be added to this suit if possible.
  */
 
 public class DefaultSuite {

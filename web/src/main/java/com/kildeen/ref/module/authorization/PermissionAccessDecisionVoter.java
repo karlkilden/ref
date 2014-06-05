@@ -59,8 +59,7 @@ public class PermissionAccessDecisionVoter implements AccessDecisionVoter {
         boolean allowed = false;
         if (userContext.initialized()) {
             allowed = userContext.getGroup().getPermissionSet().contains(systemNode.getPermission());
-        }
-        else {
+        } else {
 
         }
 
@@ -69,7 +68,7 @@ public class PermissionAccessDecisionVoter implements AccessDecisionVoter {
             return null;
         } else {
             Set<SecurityViolation> violations = new HashSet<>();
-            violations.add(new SecurityViolationImpl(userContext.initialized()? "Not enough Rights" : "Please login"));
+            violations.add(new SecurityViolationImpl(userContext.initialized() ? "Not enough Rights" : "Please login"));
             return violations;
         }
     }

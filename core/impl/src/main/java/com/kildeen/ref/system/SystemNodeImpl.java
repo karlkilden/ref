@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SystemNodeImpl implements SystemNode {
 
-    private String permissionName;
+    private String nodeName;
     private List<SystemNode> children;
     private Class<?> definition;
     private boolean root;
@@ -50,7 +50,7 @@ public class SystemNodeImpl implements SystemNode {
                 type = NodeType.LEAF;
             }
         }
-        this.permissionName = getPermissionName(definition);
+        this.nodeName = getNodeName(definition);
 
         if (parent == null) {
             root = true;
@@ -62,7 +62,7 @@ public class SystemNodeImpl implements SystemNode {
     }
 
     @Override
-    public String getPermissionName(final Class<?> definition) {
+    public String getNodeName(final Class<?> definition) {
         String permission;
         if (definition.isAnnotationPresent(Named.class)) {
             permission = definition.getAnnotation(Named.class).value();
@@ -98,8 +98,8 @@ public class SystemNodeImpl implements SystemNode {
     }
 
     @Override
-    public String getPermissionName() {
-        return permissionName;
+    public String getNodeName() {
+        return nodeName;
     }
 
     @Override
@@ -145,6 +145,11 @@ public class SystemNodeImpl implements SystemNode {
 			this.page = path.substring(path.lastIndexOf("/")+1);
 		}
 	}
+
+    @Override
+    public String toString() {
+        return nodeName + " "+  type.toString();
+    }
 
 
 }

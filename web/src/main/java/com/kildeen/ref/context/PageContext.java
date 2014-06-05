@@ -57,7 +57,7 @@ public class PageContext implements Serializable {
     private ExceptionInfo exceptionInfo;
 
     private void registerPageChange(@Observes PreViewConfigNavigateEvent preViewConfigNavigateEvent) {
-        systemNode = systemNodeResolver.byDefinition(preViewConfigNavigateEvent.getToView());
+        systemNode = systemNodeResolver.getByDefinition(preViewConfigNavigateEvent.getToView());
 
         if (systemNode == null) {
             throw new RuntimeException(preViewConfigNavigateEvent.getToView().getName() + " Not found as node");
@@ -78,7 +78,7 @@ public class PageContext implements Serializable {
     private void refreshSystemNode() {
         FacesContext fc = FacesContext.getCurrentInstance();
         if (fc != null) {
-            systemNode = systemNodeResolver.byPath(fc.getViewRoot().getViewId());
+            systemNode = systemNodeResolver.getByPath(fc.getViewRoot().getViewId());
             if (systemNode == null) {
                 throw new RuntimeException(fc.getViewRoot().getViewId() + " Not found as node");
             }

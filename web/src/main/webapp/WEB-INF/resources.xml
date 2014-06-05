@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<Resource id="ref" type="DataSource">
+<!--<Resource id="ref" type="DataSource">-->
 
-    #PostgresSQL
-    JdbcDriver org.postgresql.Driver
-    JdbcUrl jdbc:postgresql://127.0.0.1:5432/ref
-    UserName postgres
-    Password postgres
-    JtaManaged true
-</Resource>
+    <!--#PostgresSQL-->
+    <!--JdbcDriver org.postgresql.Driver-->
+    <!--JdbcUrl jdbc:postgresql://127.0.0.1:5432/ref-->
+    <!--UserName postgres-->
+    <!--Password postgres-->
+    <!--JtaManaged true-->
+<!--</Resource>-->
 
 
     <!--<Resource id="MySQL Database" type="DataSource">-->

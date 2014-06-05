@@ -2,6 +2,7 @@ package com.kildeen.ref;
 
 import com.kildeen.ref.module.fact.EagerManagerTest;
 import com.kildeen.ref.module.fact.FactServiceTest;
+import com.kildeen.ref.security.PermissionResolverImplTest;
 import com.kildeen.ref.system.LeafTest;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestSuiteRunner;
 
@@ -14,6 +15,7 @@ import org.junit.runners.Suite;
         FactServiceTest.class,
         EagerManagerTest.class,
         LeafTest.class,
+        PermissionResolverImplTest.class
 })
 
 /**

@@ -40,17 +40,13 @@ public class Permission extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object permission) {
-        Permission permission1 = (Permission) permission;
-        long id1 = permission1.getId();
-        long id = this.getId();
+    public boolean equals(Object other) {
 
-        if (id == id1 && id != 0) {
-            return true;
-        }
-
-        return this.name.equals(permission1.getName());
+        Permission otherPermission = (Permission) other;
+        return baseEquals(otherPermission, this.name, otherPermission.getName());
     }
+
+
 
     @Override
     public int hashCode() {
@@ -62,6 +58,11 @@ public class Permission extends BaseEntity {
 
         return Objects.hashCode(name, getId());
 
+    }
+
+    @Override
+    public String toString() {
+        return name +" "+ baseToString();
     }
 
 }

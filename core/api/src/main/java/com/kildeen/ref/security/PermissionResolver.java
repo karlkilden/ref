@@ -13,5 +13,4 @@ import java.util.Set;
  */
 public interface PermissionResolver extends Initiator {
 
-    Set<Class<?>> getPermissions(long groupId);
 }

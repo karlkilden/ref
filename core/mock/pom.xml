@@ -117,6 +117,12 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>${omnifaces.version}</version>
+        </dependency>
+
 
         <!--
              <dependency>

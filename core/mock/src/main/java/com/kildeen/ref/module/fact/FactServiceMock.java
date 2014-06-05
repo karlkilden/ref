@@ -2,6 +2,7 @@ package com.kildeen.ref.module.fact;
 
 import com.kildeen.ref.application.Database;
 import org.apache.deltaspike.data.api.QueryResult;
+import org.apache.deltaspike.data.impl.builder.result.DefaultQueryResult;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
@@ -65,10 +66,7 @@ public class FactServiceMock implements FactService {
 
     @Override
     public QueryResult<FactDTO> fetchAllResult() {
-        // to much work to mock
-        return null;
-
-
+             return new QueryResultMock(database.getAllFacts());
     }
 
 

@@ -31,7 +31,6 @@ public class PermissionResolverMock implements PermissionResolver {
     @Inject
     private SystemNodeResolver systemNodeResolver;
 
-    @Override
     public Set<Class<?>> getPermissions(long groupId) {
 
         GroupDTO group = null;
@@ -43,7 +42,7 @@ public class PermissionResolverMock implements PermissionResolver {
         }
         Set<Class<?>> allowedNodes = new HashSet<>(group.getPermissions().size());
         for (Permission permission : group.getPermissions()) {
-            allowedNodes.add(systemNodeResolver.byId(permission.getName()));
+            allowedNodes.add(systemNodeResolver.getDefinitionByName(permission.getName()));
         }
         return allowedNodes;
     }
