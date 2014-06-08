@@ -7,6 +7,7 @@ import com.kildeen.ref.module.authorization.UserDTO;
 import com.kildeen.ref.module.user.UserService;
 
 import javax.annotation.Resource;
+import javax.ejb.Asynchronous;
 import javax.ejb.Singleton;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;

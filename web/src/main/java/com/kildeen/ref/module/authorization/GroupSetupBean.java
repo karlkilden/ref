@@ -6,11 +6,15 @@ import com.kildeen.ref.domain.Permission;
 import com.kildeen.ref.system.Current;
 import com.kildeen.ref.system.SystemNode;
 import com.kildeen.ref.system.SystemNodeResolver;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.deltaspike.core.api.scope.ViewAccessScoped;
 import org.apache.deltaspike.jsf.api.message.JsfMessage;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import org.primefaces.push.EventBus;
+import org.primefaces.push.EventBusFactory;
 
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -47,6 +51,9 @@ public class GroupSetupBean implements Serializable {
     private TreeNode[] selectedPermissions;
     private GroupDTO groupDTO = new GroupDTO();
     private long groupId;
+
+    private final static String CHANNEL = "/notify";
+
 
 
     public void init() {
@@ -97,6 +104,9 @@ public class GroupSetupBean implements Serializable {
         groupService.save(groupDTO);
 
         msg.addInfo().entityCreated(Group.class.getSimpleName(), groupDTO.getName());
+
+        EventBus eventBus = EventBusFactory.getDefault().eventBus();
+        eventBus.publish(CHANNEL, new FacesMessage("test","test2"));
 
     }
 

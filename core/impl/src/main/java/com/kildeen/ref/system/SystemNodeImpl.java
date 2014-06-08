@@ -1,13 +1,15 @@
 package com.kildeen.ref.system;
 
 import com.kildeen.ref.domain.Permission;
-
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
 
 import javax.inject.Named;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 
 /**
  * <p>File created: 2014-04-30 21:53</p>
@@ -25,8 +27,9 @@ public class SystemNodeImpl implements SystemNode {
     private SystemNode parent;
     private NodeType type;
     private Permission permission;
-	private String path;
-	private String page;
+    private String path;
+    private String page;
+    private PageInfo pageInfo;
 
     public SystemNodeImpl(final Class<?> definition, SystemNodeImpl parent) {
         this.definition = definition;
@@ -59,6 +62,9 @@ public class SystemNodeImpl implements SystemNode {
             children.add(new SystemNodeImpl(childDefinition, this));
         }
 
+        if ((type == NodeType.BRANCH) && isNotEmpty(children)) {
+            pageInfo = new PageInfoImpl(children);
+        }
     }
 
     @Override
@@ -122,34 +128,43 @@ public class SystemNodeImpl implements SystemNode {
     }
 
 
-	@Override
-	public String getPath() {
-		
-		return path;
-	}
+    @Override
+    public String getPath() {
 
-	@Override
-	public String getPage() {
-		return page;
-	}
+        return path;
+    }
 
     @Override
-	public SystemNode getParent() {
-                               return parent;
+    public String getPage() {
+        return page;
+    }
+
+    @Override
+    public SystemNode getParent() {
+        return parent;
     }
 
     public void setupPath(String path) {
-		this.path = path;
-		
-		if (isBranch()) {
-			this.page = path.substring(path.lastIndexOf("/")+1);
-		}
-	}
+        this.path = path;
+
+        if (isBranch()) {
+            this.page = path.substring(path.lastIndexOf("/") + 1);
+        }
+    }
 
     @Override
     public String toString() {
-        return nodeName + " "+  type.toString();
+        return nodeName + " " + type.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        SystemNodeImpl otherSystemNode = (SystemNodeImpl) other;
+        return this.definition == otherSystemNode.getDefinition();
+    }
 
+    @Override
+    public PageInfo getPageInfo() {
+        return pageInfo;
+    }
 }

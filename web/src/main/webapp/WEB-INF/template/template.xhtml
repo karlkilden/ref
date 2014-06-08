@@ -11,7 +11,13 @@
 
     </f:facet>
     <h:outputStylesheet name="main.css" library="css"/>
+    <script type="text/javascript">
+        function handleMessage(facesmessage) {
+            facesmessage.severity = 'info';
 
+            PF('growl').show([facesmessage]);
+        }
+    </script>
 </h:head>
 
 <h:body>
@@ -36,6 +42,8 @@
                 </div>
 
                 <header class="wrapper clearfix">
+
+
 
                     <div>
                         <ui:insert name="header-quick-navigation">
@@ -80,6 +88,8 @@
     </o:cache>
     <!--        <p:socket onMessage="newNotification" channel="#{channel}" rendered="#{channel != null}"/>
             <p:socket onMessage="newNotification" channel="/notifications"/>    -->
+    <p:socket onMessage="handleMessage" channel="/notify" />
+
 
     <h:panelGroup id="mainBody">
         <ui:insert name="resources">

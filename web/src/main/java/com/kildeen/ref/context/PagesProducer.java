@@ -7,7 +7,6 @@ import com.kildeen.ref.system.Pages;
 
 import javax.enterprise.inject.Produces;
 
-import com.kildeen.ref.system.PermissionError;
 import org.apache.deltaspike.core.api.config.view.ViewConfig;
 
 import java.util.Arrays;
@@ -29,6 +28,6 @@ public class PagesProducer {
     @Current
     public List<Class<? extends ViewConfig>> rootNodes() {
 
-        return Arrays.asList(Index.class, Pages.class, PermissionError.class);
+        return Arrays.asList(Index.class, Pages.class);
     }
 }

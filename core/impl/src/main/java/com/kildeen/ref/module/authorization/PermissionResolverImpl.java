@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.cache.annotation.CacheResult;
+import javax.ejb.Asynchronous;
 import javax.ejb.Singleton;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;

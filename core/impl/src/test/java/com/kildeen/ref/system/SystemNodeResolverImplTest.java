@@ -19,8 +19,10 @@ public class SystemNodeResolverImplTest {
 	@Test
 	public void test() {
 		assertNotNull(systemNodeResolverImpl);
-		
-		System.out.println(systemNodeResolverImpl.nodes());
-	}
+
+
+        System.out.println(systemNodeResolverImpl.root());
+        System.out.println(systemNodeResolverImpl.nodes());
+    }
 	
 }

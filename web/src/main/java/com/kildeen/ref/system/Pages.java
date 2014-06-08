@@ -33,6 +33,10 @@ public interface Pages extends ViewConfig, SecuredPages {
 
             public class UserSetup implements ViewConfig {
 
+                public class Delete {
+
+                }
+
             }
 
             public class UserOverview implements ViewConfig {

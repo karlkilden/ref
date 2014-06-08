@@ -22,7 +22,6 @@ package com.kildeen.ref.module.authorization;
 import com.kildeen.ref.UserContext;
 import com.kildeen.ref.system.Current;
 import com.kildeen.ref.system.Pages;
-import com.kildeen.ref.system.PermissionError;
 import com.kildeen.ref.system.SystemNode;
 import org.apache.deltaspike.core.api.config.view.navigation.ViewNavigationHandler;
 import org.apache.deltaspike.security.api.authorization.AccessDecisionVoter;

@@ -1,18 +1,13 @@
 package com.kildeen.ref.context;
 
 import com.kildeen.ref.BundleBean;
+import com.kildeen.ref.UserContext;
 import com.kildeen.ref.domain.BaseEntity;
-import com.kildeen.ref.security.PermissionResolver;
-import com.kildeen.ref.system.Current;
-import com.kildeen.ref.system.LogManager;
-import com.kildeen.ref.system.SystemNode;
-import com.kildeen.ref.system.SystemNodeResolver;
-import org.apache.deltaspike.core.api.config.view.navigation.event.PreViewConfigNavigateEvent;
+import com.kildeen.ref.system.*;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -40,30 +35,26 @@ public class PageContext implements Serializable {
     private SystemNodeResolver systemNodeResolver;
 
     @Inject
+    private UserContext userContext;
+
+    @Inject
     private BundleBean bundleBean;
 
     @Inject
     private EntityLookup entityLookup;
 
     @Inject
-    private PermissionResolver permissionResolver;
+    PageInfoContextHandler pageInfoContextHandler;
+
 
     private SystemNode systemNode;
 
     private String currentEntity;
     private PageType pageType;
+
     private boolean loaded;
 
-    private ExceptionInfo exceptionInfo;
-
-    private void registerPageChange(@Observes PreViewConfigNavigateEvent preViewConfigNavigateEvent) {
-        systemNode = systemNodeResolver.getByDefinition(preViewConfigNavigateEvent.getToView());
-
-        if (systemNode == null) {
-            throw new RuntimeException(preViewConfigNavigateEvent.getToView().getName() + " Not found as node");
-        }
-        log.info("new page: {}", systemNode.getPage());
-    }
+    private PageInfoContext page;
 
     @Produces
     @Current
@@ -72,7 +63,7 @@ public class PageContext implements Serializable {
         return systemNode;
     }
 
-
+    private ExceptionInfo exceptionInfo;
 
     @PostConstruct
     private void refreshSystemNode() {
@@ -82,6 +73,8 @@ public class PageContext implements Serializable {
             if (systemNode == null) {
                 throw new RuntimeException(fc.getViewRoot().getViewId() + " Not found as node");
             }
+            if (systemNode.getPageInfo() != null)
+            page = pageInfoContextHandler.getPageInfoContext(systemNode);
         }
     }
 
@@ -118,7 +111,7 @@ public class PageContext implements Serializable {
                 currentEntity = "Unknown";
             }
         }
-
+        loaded = true;
     }
 
     public ExceptionInfo getExceptionInfo() {
@@ -139,4 +132,7 @@ public class PageContext implements Serializable {
         return pageType;
     }
 
+    public PageInfoContext getPage() {
+        return page;
+    }
 }
