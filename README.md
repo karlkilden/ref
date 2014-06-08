@@ -4,6 +4,19 @@ ref
 Java EE modular project template
 
 
+Run instructions:
+
+clone
+in the root: mvn clean install -Pfast
+cd web
+mvn tomee:run
+
+In your browser: localhost:8080
+
+Login with "root2"
+
+
+
 This project is based on Java EE 6 awaiting Java EE 7 support from TomEE. Everything will be portable unless explicitly mentioned here.
 
 
