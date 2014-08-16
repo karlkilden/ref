@@ -20,14 +20,14 @@ import java.util.logging.Logger;
  * @author: Karl Kildén
  * @since 1.0
  */
-public class CDIRunner extends CdiTestRunner {
-    private static final Logger LOGGER = Logger.getLogger(CDIRunner.class.getName());
+public class CdiTestRunner extends CdiTestRunner {
+    private static final Logger LOGGER = Logger.getLogger(CdiTestRunner.class.getName());
 
     private ProjectStage projectStage;
     private ProjectStage previousProjectStage;
     TestControl testControl;
 
-    public CDIRunner(final Class<?> testClass) throws InitializationError {
+    public CdiTestRunner(final Class<?> testClass) throws InitializationError {
         super(testClass);
         final Properties annotationConfig = testClass.getAnnotation(Properties.class);
         if (annotationConfig != null) {

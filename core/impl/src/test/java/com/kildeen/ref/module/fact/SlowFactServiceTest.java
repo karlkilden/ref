@@ -1,8 +1,8 @@
 package com.kildeen.ref.module.fact;
 
-import com.kildeen.ref.testutil.CDIRunner;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.deltaspike.data.api.QueryResult;
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.apache.openejb.junit.jee.config.Properties;
 import org.apache.openejb.junit.jee.config.Property;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
  * Date: 2014-05-20
  */
 
-@RunWith(CDIRunner.class)
+@RunWith(CdiTestRunner.class)
 @Properties({@Property(key="openejb.jpa.init-entitymanager", value = "true")})
 
 public class SlowFactServiceTest {

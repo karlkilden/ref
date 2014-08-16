@@ -1,7 +1,7 @@
 package com.kildeen.ref.system;
 
-import com.kildeen.ref.testutil.CDIRunner;
 import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigResolver;
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNull;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(CDIRunner.class)
+@RunWith(CdiTestRunner.class)
 public class LeafTest {
 
     @Inject

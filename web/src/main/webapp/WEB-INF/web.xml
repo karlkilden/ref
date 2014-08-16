@@ -48,6 +48,11 @@
         <param-value>true</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name>
+        <param-value>org.atmosphere.cache.UUIDBroadcasterCache</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -65,8 +70,6 @@
 
         <servlet-class>org.primefaces.push.PushServlet</servlet-class>
         <async-supported>true</async-supported>
-        <load-on-startup>1</load-on-startup>
-
     </servlet>
 
     <servlet-mapping>

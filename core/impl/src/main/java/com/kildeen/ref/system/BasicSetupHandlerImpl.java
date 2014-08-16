@@ -41,28 +41,29 @@ public class BasicSetupHandlerImpl implements BasicSetupHandler {
     @Override
     public void boot() {
         try {
-            userTransaction.begin();
             GroupDTO superGroup = groupService.fetchByName(ROOT);
 
             if (superGroup == null) {
+                userTransaction.begin();
                 superGroup = new GroupDTO();
                 superGroup.setPermissions(permissionService.fetchPermissions());
                 superGroup.setName(ROOT);
+                groupService.save(superGroup);
+                userTransaction.commit();
             }
 
-            groupService.save(superGroup);
-            userTransaction.commit();
 
-            userTransaction.begin();
             UserDTO rootUser = userService.fetchByName(ROOT);
-
             if (rootUser == null) {
-                rootUser = new UserDTO();
-                rootUser.setName(ROOT);
-                rootUser.setGroup(groupService.fetchByName(ROOT));
+                return;
+
+//                userTransaction.begin();
+//                rootUser = new UserDTO();
+//                rootUser.setName(ROOT);
+//                rootUser.setGroup(groupService.fetchByName(ROOT));
+//                userService.save(rootUser);
+//                userTransaction.commit();
             }
-            userService.save(rootUser);
-            userTransaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }

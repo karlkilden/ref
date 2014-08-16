@@ -1,6 +1,7 @@
 package com.kildeen.ref.module.authorization;
 
 import com.kildeen.ref.application.MapperUtil;
+import com.kildeen.ref.domain.Group;
 import com.kildeen.ref.module.user.UserService;
 import com.kildeen.ref.domain.User;
 import org.apache.deltaspike.data.api.mapping.SimpleQueryInOutMapperBase;
@@ -17,7 +18,7 @@ import javax.persistence.EntityManager;
  * @since 1.0
  */
 @ApplicationScoped
-public class UserMapper extends SimpleQueryInOutMapperBase<User, UserDTO> {
+public class UserMapper extends BaseMapper<User, UserDTO> {
 
     @Inject
     private UserService userService;
@@ -28,6 +29,11 @@ public class UserMapper extends SimpleQueryInOutMapperBase<User, UserDTO> {
     @Inject
     private EntityManager em;
 
+
+    @Override
+    protected Object getPrimaryKey(final UserDTO userDTO) {
+        return MapperUtil.getId(userDTO);
+    }
 
     @Override
     protected UserDTO toDto(final User user) {
@@ -42,19 +48,20 @@ public class UserMapper extends SimpleQueryInOutMapperBase<User, UserDTO> {
     }
 
     @Override
-    protected User toEntity(final UserDTO userDTO) {
-        User user;
-        if (userDTO.getId() != 0) {
-            user = em.find(User.class, userDTO.getId());
-        }
-        else {
+    protected User toEntity(User user, final UserDTO userDTO) {
+        if (user == null) {
             user = new User();
         }
+
         MapperUtil.toAuditEntity(user, userDTO);
+
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setLocale(userDTO.getLocale());
-        user.setGroup(groupMapper.toEntity(userDTO.getGroup()));
+        if (userDTO.getGroup() != null) {
+            Group g = groupMapper.fetch(user.getGroup(), userDTO.getGroup());
+            user.setGroup(g);
+        }
         return user;
     }
 }

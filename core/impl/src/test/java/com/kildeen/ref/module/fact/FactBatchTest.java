@@ -1,6 +1,5 @@
 package com.kildeen.ref.module.fact;
 
-import com.kildeen.ref.testutil.CDIRunner;
 import com.kildeen.ref.testutil.EJBRunner;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Test;

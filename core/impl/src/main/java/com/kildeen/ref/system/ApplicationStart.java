@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.logging.Level;
 
 import static javax.ejb.ConcurrencyManagementType.BEAN;
 
@@ -34,6 +35,9 @@ public class ApplicationStart implements Serializable {
     @PostConstruct
     private void boot() {
         bootInitiator(permissionResolver, basicSetupHandler);
+
+        java.util.logging.Logger logger = java.util.logging.Logger.getLogger("org.apache.geronimo.connector.work.WorkerContext") ;
+        logger.setLevel(Level.WARNING);
     }
 
     private void bootInitiator(final Initiator... initiators) {

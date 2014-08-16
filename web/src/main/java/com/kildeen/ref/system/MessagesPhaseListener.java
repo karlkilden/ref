@@ -2,6 +2,7 @@ package com.kildeen.ref.system;
 
 import com.kildeen.ref.application.ExceptionQueue;
 import com.kildeen.ref.context.PageContext;
+import com.kildeen.ref.context.PageType;
 import com.kildeen.ref.module.authorization.Messages;
 import org.apache.deltaspike.core.api.exception.control.event.ExceptionEvent;
 import org.apache.deltaspike.core.api.provider.BeanProvider;
@@ -53,8 +54,11 @@ public class MessagesPhaseListener extends DefaultPhaseListener {
                 msg.addError().optimisticLockFailure((pageContext.currentEntity()));
 
             } else {
-
-                switch (pageContext.pageType()) {
+                PageType page = PageType.UNKNOWN;
+                if (pageContext != null) {
+                    page = pageContext.pageType();
+                }
+                switch (page) {
                     case SETUP:
                         msg.addError().setupFailure(pageContext.currentEntity());
                         break;

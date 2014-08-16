@@ -2,7 +2,7 @@ package com.kildeen.ref.security;
 
 import com.kildeen.ref.system.SystemNodeResolver;
 import com.kildeen.ref.system.TestPages;
-import com.kildeen.ref.testutil.CDIRunner;
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(CDIRunner.class)
+@RunWith(CdiTestRunner.class)
 public class PermissionResolverImplTest {
     @Inject
     private SystemNodeResolver systemNodeResolver;

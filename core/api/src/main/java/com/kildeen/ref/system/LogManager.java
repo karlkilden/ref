@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class LogManager {
 
     public static Logger getLogger() {
-        return LoggerFactory.getLogger(new Throwable().getStackTrace()[2].getClass());
+        return LoggerFactory.getLogger(new Throwable().getStackTrace()[1].getClassName());
 
     }
 

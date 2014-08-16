@@ -1,5 +1,6 @@
 package com.kildeen.ref.application;
 
+import com.kildeen.ref.module.authorization.GroupDTO;
 import com.kildeen.ref.module.fact.BaseAuditDTO;
 import com.kildeen.ref.module.fact.BaseDTO;
 import com.kildeen.ref.domain.BaseAuditEntity;
@@ -29,6 +30,9 @@ public class MapperUtil {
     }
 
     public static void toAuditEntity(BaseAuditEntity entity, BaseAuditDTO dto) {
+        if (entity == null) {
+            return;
+        }
         toEntity(entity, dto);
         entity.setCreatedAt(dto.getCreatedAt());
         entity.setRevision(dto.getRevision());
@@ -48,4 +52,7 @@ public class MapperUtil {
     }
 
 
+    public static Object getId(final BaseDTO dto) {
+        return dto.getId();
+    }
 }

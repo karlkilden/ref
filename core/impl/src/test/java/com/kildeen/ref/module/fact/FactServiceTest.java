@@ -2,8 +2,8 @@ package com.kildeen.ref.module.fact;
 
 import com.kildeen.ref.domain.Word;
 import com.kildeen.ref.domain.WordOccurrence;
-import com.kildeen.ref.testutil.CDIRunner;
 import org.apache.bval.constraints.NotEmpty;
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import org.apache.openejb.junit.jee.config.Properties;
 import org.apache.openejb.junit.jee.config.Property;
 import org.junit.Test;
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  * @author: Karl Kildén
  * @since 1.0
  */
-@RunWith(CDIRunner.class)
+@RunWith(CdiTestRunner.class)
 @Properties({@Property(key="openejb.jpa.init-entitymanager", value = "true")})
 public class FactServiceTest {
 

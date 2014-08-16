@@ -20,7 +20,7 @@ import java.util.List;
  * @since 1.0
  */
 @ApplicationScoped
-public class GroupMapper extends SimpleQueryInOutMapperBase<Group, GroupDTO> {
+public class GroupMapper extends BaseMapper<Group, GroupDTO> {
 
     @Inject
     private GroupService groupService;
@@ -28,6 +28,11 @@ public class GroupMapper extends SimpleQueryInOutMapperBase<Group, GroupDTO> {
     @Inject
     private EntityManager em;
 
+
+    @Override
+    protected Object getPrimaryKey(final GroupDTO groupDTO) {
+        return MapperUtil.getId(groupDTO);
+    }
 
     @Override
     protected GroupDTO toDto(final Group group) {
@@ -50,6 +55,8 @@ public class GroupMapper extends SimpleQueryInOutMapperBase<Group, GroupDTO> {
         return dto;
     }
 
+
+
     private UserDTO createUserDTO(final GroupDTO dto, final User user) {
         UserDTO userDTO = new UserDTO();
         MapperUtil.toDTO(userDTO, user);
@@ -59,12 +66,9 @@ public class GroupMapper extends SimpleQueryInOutMapperBase<Group, GroupDTO> {
     }
 
     @Override
-    protected Group toEntity(final GroupDTO groupDTO) {
-        Group group;
-        if (groupDTO.getId() != 0) {
-            group = em.find(Group.class, groupDTO.getId());
-        }
-        else {
+    protected Group toEntity(Group group, final GroupDTO groupDTO) {
+
+        if (group == null) {
             group = new Group();
         }
         MapperUtil.toAuditEntity(group, groupDTO);
